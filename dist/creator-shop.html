@@ -1,0 +1,342 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="FansFollow.me Creator Shop">
+  <meta name="theme-color" content="#f97316">
+  <title>Creator Shop - FansFollow.me</title>
+  <link href="https://fansfollow.me/img/favicon.png" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f1a;
+      --panel: #151b2c;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --shadow: 0 18px 54px rgba(0, 0, 0, 0.36);
+      --cta-gradient: linear-gradient(135deg, #f97316 0%, #ec4899 48%, #a855f7 100%);
+      --cta-gradient-2: linear-gradient(135deg, #f97316 0%, #9333ea 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background-color: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-weight: 400; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; color: var(--text); }
+
+    .public-shell-topbar { position: sticky; top: 0; z-index: 40; background: transparent; border-bottom: 1px solid transparent; transition: background .3s, border-color .3s, box-shadow .3s; }
+    .public-shell-topbar.scrolled { background: rgba(11,15,26,0.82); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.06); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .public-shell-topbar .inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .public-shell-brand img { height: 30px; width: auto; }
+    .public-shell-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0.15rem; }
+    .public-shell-nav a, .public-shell-nav summary { padding: 0.5rem 0.7rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; color: #cbd5e1; cursor: pointer; list-style: none; transition: color .16s, transform .16s; }
+    .public-shell-nav a:hover, .public-shell-nav a.active, .public-shell-nav summary:hover, .public-shell-nav details[open] > summary { color: #fb923c; transform: translateY(-1px); }
+    .public-shell-nav details { position: relative; }
+    .public-shell-nav details > summary::-webkit-details-marker { display: none; }
+    .public-shell-nav summary::after { content: '\25BE'; margin-left: .35rem; font-size: .82em; opacity: .8; }
+    .public-shell-nav details[open] > summary::after { transform: rotate(180deg); }
+    .public-shell-nav-panel { position: absolute; top: calc(100% + .55rem); left: 0; min-width: 220px; padding: .45rem; background: #151b2c; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; box-shadow: var(--shadow); display: grid; gap: .15rem; z-index: 5; }
+    .public-shell-nav-panel a { padding: .7rem .8rem; border-radius: 12px; font-weight: 600; color: #e5e7eb; display: flex; align-items: center; gap: .6rem; }
+    .public-shell-nav-panel a:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .public-shell-actions { display: flex; gap: .6rem; align-items: center; position: relative; }
+    .public-shell-button { border-radius: 12px; font-weight: 700; min-height: 42px; padding: 0.65rem 1.1rem; letter-spacing: -0.01em; border-width: 1px; font-size: .9rem; }
+    .public-shell-button.btn-primary { background: var(--cta-gradient); color: #fff; border-color: transparent; box-shadow: 0 10px 20px rgba(249,115,22,.3); }
+    .public-shell-button.btn-primary:hover, .public-shell-button.btn-primary:focus { background: linear-gradient(135deg, #f97316 0%, #a855f7 100%); color: #fff; }
+    .account-trigger { display: flex; align-items: center; gap: .5rem; cursor: pointer; padding: .35rem .6rem .35rem .35rem; border-radius: 999px; background: rgba(30,41,59,.6); border: 1px solid var(--line); transition: border-color .18s; }
+    .account-trigger:hover { border-color: rgba(255,255,255,.15); }
+    .account-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--cta-gradient-2); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .8rem; flex-shrink: 0; }
+    .account-name { font-size: .85rem; font-weight: 600; color: #e5e7eb; }
+    .account-chevron { font-size: .75rem; color: #94a3b8; }
+    .account-menu { position: absolute; top: calc(100% + .55rem); right: 0; min-width: 240px; padding: .5rem; background: #151b2c; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; box-shadow: var(--shadow); display: none; z-index: 50; }
+    .account-menu.is-open { display: block; }
+    .account-menu a { display: flex; align-items: center; gap: .6rem; padding: .55rem .7rem; border-radius: 10px; color: #94a3b8; font-weight: 600; font-size: .85rem; transition: background .16s, color .16s; }
+    .account-menu a:hover { background: rgba(255,255,255,.06); color: #e5e7eb; }
+    .account-menu a i { font-size: 1rem; width: 1.2rem; text-align: center; color: #64748b; }
+    .account-menu a:hover i { color: #fb923c; }
+    .account-menu .menu-divider { height: 1px; background: var(--line); margin: .35rem .5rem; }
+    .account-menu .menu-balance { padding: .55rem .7rem; border-radius: 10px; margin-bottom: .25rem; background: rgba(249,115,22,.06); border: 1px solid rgba(249,115,22,.12); }
+    .account-menu .menu-balance .bal-label { font-size: .7rem; color: #94a3b8; font-weight: 600; }
+    .account-menu .menu-balance .bal-value { font-size: 1.1rem; color: #fb923c; font-weight: 800; }
+    .public-shell-hamburger { display: none; background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+    .mobile-menu-overlay { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+    .mobile-menu-overlay.is-open { display: block; }
+    .mobile-menu-panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(85vw, 360px); z-index: 101; background: linear-gradient(180deg, #151b2c 0%, #0f172a 100%); border-left: 1px solid rgba(255,255,255,.08); transform: translateX(100%); transition: transform .3s ease; overflow-y: auto; display: flex; flex-direction: column; padding: 1.5rem; }
+    .mobile-menu-panel.is-open { transform: translateX(0); }
+    .mobile-menu-close { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+    .mobile-menu-close button { background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+    .mobile-menu-section-label { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #64748b; padding: .6rem 0; }
+    .mobile-menu-panel a { display: block; padding: .75rem 0; color: #e5e7eb; font-size: 1.05rem; font-weight: 600; }
+    .mobile-menu-panel a:hover { color: #fb923c; }
+    @media (max-width: 991.98px) {
+      .public-shell-hamburger { display: flex; }
+      .public-shell-topbar .inner { min-height: auto; flex-wrap: wrap; padding: .85rem 0; }
+      .public-shell-brand { flex: 1 1 auto; }
+      .public-shell-brand img { height: 26px; }
+      .account-name, .account-chevron { display: none !important; }
+    }
+
+    .container { max-width: 1280px !important; padding-left: 1rem; padding-right: 1rem; }
+    @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; } }
+
+    .profile-wrap { max-width: 900px; margin: 0 auto; padding: 0 1rem 3rem; }
+
+    .cover-area { height: 160px; background: linear-gradient(135deg, #1a1f2e 0%, #151b2c 50%, #0f172a 100%); border-radius: 0 0 20px 20px; position: relative; margin-bottom: -50px; }
+    @media (max-width: 575.98px) { .cover-area { height: 120px; margin-bottom: -40px; } }
+
+    .profile-header { text-align: center; position: relative; z-index: 2; }
+    .profile-avatar { width: 100px; height: 100px; border-radius: 50%; background: #f8fafc; border: 4px solid var(--bg); margin: 0 auto; display: flex; align-items: center; justify-content: center; overflow: hidden; position: relative; }
+    @media (max-width: 575.98px) { .profile-avatar { width: 80px; height: 80px; border-width: 3px; } }
+    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; color: #94a3b8; background: #e2e8f0; }
+    @media (max-width: 575.98px) { .profile-avatar-fallback { font-size: 2rem; } }
+
+    .creator-badge { display: inline-flex; align-items: center; gap: .3rem; padding: .25rem .65rem; border-radius: 999px; background: rgba(153,27,27,.2); border: 1px solid rgba(220,38,38,.3); color: #fca5a5; font-size: .72rem; font-weight: 700; margin-top: .75rem; }
+    .creator-badge i { font-size: .8rem; }
+
+    .active-text { font-size: .82rem; color: var(--muted); margin-top: .4rem; }
+
+    .share-btn { width: 36px; height: 36px; border-radius: 10px; background: #fff; border: none; display: inline-flex; align-items: center; justify-content: center; cursor: pointer; margin-top: .75rem; transition: filter .18s; box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+    .share-btn:hover { filter: brightness(.95); }
+    .share-btn i { font-size: 1rem; color: #6366f1; }
+
+    .action-links { display: flex; align-items: center; justify-content: center; gap: 1.5rem; margin-top: .75rem; }
+    .action-link { display: inline-flex; align-items: center; gap: .35rem; font-size: .78rem; font-weight: 600; color: #f87171; text-decoration: underline; text-decoration-color: rgba(248,113,113,.4); text-underline-offset: 3px; cursor: pointer; transition: color .18s; }
+    .action-link:hover { color: #fca5a5; }
+    .action-link i { font-size: .85rem; }
+
+    .stats-row { display: flex; align-items: center; justify-content: center; gap: 2.5rem; margin-top: 1.5rem; }
+    @media (max-width: 575.98px) { .stats-row { gap: 1.25rem; } }
+    .stat-group { text-align: center; }
+    .stat-num { font-size: 1.4rem; font-weight: 800; color: #fff; }
+    .stat-label { font-size: .8rem; color: var(--muted); margin-top: .15rem; }
+
+    .tab-row { display: flex; align-items: center; justify-content: center; gap: 2rem; margin-top: 1.5rem; border-bottom: 1px solid var(--line); }
+    .tab-item { padding: .75rem 0; font-size: .9rem; font-weight: 700; color: var(--muted); cursor: pointer; border-bottom: 2px solid transparent; transition: color .18s, border-color .18s; margin-bottom: -1px; }
+    .tab-item:hover { color: #e5e7eb; }
+    .tab-item.active { color: #a855f7; border-bottom-color: #a855f7; }
+
+    .empty-wrap { text-align: center; padding: 3rem 1rem 2rem; }
+    .empty-circle { width: 180px; height: 180px; border-radius: 50%; border: 2px solid var(--line); display: flex; align-items: center; justify-content: center; margin: 0 auto 2rem; }
+    .empty-circle i { font-size: 4rem; color: #475569; }
+    .empty-msg { font-size: 1.1rem; font-weight: 700; color: #fff; }
+
+    .public-shell-footer { padding: 1.5rem 0 1.2rem; color: var(--muted); background: linear-gradient(135deg, #111827, #1f2937, #111827); border-top: 1px solid #1f293b; }
+    .public-shell-footer .footer-topline, .public-shell-footer .footer-bottomline { height: 3px; width: 100%; border-radius: 999px; background: linear-gradient(90deg, rgba(249,115,22,0) 0%, rgba(249,115,22,.85) 18%, rgba(168,85,247,.95) 50%, rgba(236,72,153,.85) 82%, rgba(236,72,153,0) 100%); opacity: .95; }
+    .public-shell-footer .footer-topline { margin-bottom: 1rem; }
+    .public-shell-footer .footer-bottomline { margin-top: 1.5rem; margin-bottom: .75rem; }
+    .public-shell-footer .footer-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+    .public-shell-footer h3 { margin: 0 0 .75rem; font-size: .875rem; font-weight: 700; color: #fff; position: relative; padding-bottom: .75rem; }
+    .public-shell-footer h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 32px; height: 2px; border-radius: 999px; background: var(--cta-gradient); }
+    .public-shell-footer .footer-links a { display: block; padding: .15rem 0; color: #9ca3af; font-size: .75rem; line-height: 1.4; }
+    .public-shell-footer .footer-links a:hover { color: #fff; }
+    .public-shell-footer .footer-social { display: inline-flex; gap: .5rem; }
+    .public-shell-footer .footer-social a { width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: #1f2937; color: #9ca3af; border: 1px solid rgba(255,255,255,.08); }
+    .public-shell-footer .footer-social a:hover { background: rgba(249,115,22,.16); border-color: rgba(249,115,22,.24); color: #fff; }
+    @media (max-width: 991.98px) {
+      .public-shell-footer { padding: 2rem 0 1.5rem; }
+      .public-shell-footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="public-shell-topbar">
+    <div class="container inner">
+      <a class="public-shell-brand" href="index.html" aria-label="FansFollow.me">
+        <img src="https://fansfollow.me/public/img/logo_2-1718299542.png" alt="FansFollow.me" width="120" height="30">
+      </a>
+      <nav class="public-shell-nav d-none d-lg-flex" aria-label="Primary">
+        <a href="for-creators.html">For Creators</a>
+        <a href="fans.html">For Fans</a>
+        <a href="celebrities.html">Celebrities</a>
+        <a href="explore.html">Explore</a>
+        <details class="public-shell-more">
+          <summary>More</summary>
+          <div class="public-shell-nav-panel">
+            <a href="casting.html"><i class="bi bi-film"></i> Movie Casting</a>
+            <a href="live-streams.html"><i class="bi bi-broadcast"></i> Live Streams</a>
+            <a href="business.html"><i class="bi bi-briefcase"></i> Business</a>
+            <a href="contact.html"><i class="bi bi-chat-dots"></i> Support</a>
+          </div>
+        </details>
+      </nav>
+      <div class="public-shell-actions">
+        <a class="btn btn-primary public-shell-button" href="settings.html"><i class="bi bi-pencil" style="margin-right:.35rem;"></i>Edit my page</a>
+        <div class="account-trigger" onclick="document.getElementById('accountMenu').classList.toggle('is-open')">
+          <div class="account-avatar">FF</div>
+          <span class="account-name d-none d-lg-inline">Creator</span>
+          <i class="bi bi-chevron-down account-chevron d-none d-lg-inline"></i>
+        </div>
+        <div class="account-menu" id="accountMenu">
+          <div class="menu-balance"><div class="bal-label">Balance</div><div class="bal-value">&pound;0.00</div></div>
+          <a href="wallet.html"><i class="bi bi-wallet2"></i> Wallet</a>
+          <a href="my-page.html"><i class="bi bi-person"></i> My page</a>
+          <a href="creator-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+          <a href="#"><i class="bi bi-file-earmark-plus"></i> My Posts</a>
+          <a href="#"><i class="bi bi-safe"></i> Vault</a>
+          <div class="menu-divider"></div>
+          <a href="#"><i class="bi bi-people"></i> My subscribers</a>
+          <a href="subscriptions.html"><i class="bi bi-person-check"></i> My subscriptions</a>
+          <a href="bookmarks.html"><i class="bi bi-bookmark"></i> Bookmarks</a>
+          <a href="#"><i class="bi bi-heart"></i> Likes</a>
+          <div class="menu-divider"></div>
+          <a href="#"><i class="bi bi-moon-stars"></i> Dark mode</a>
+          <a href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+      </div>
+      <button class="public-shell-hamburger" onclick="document.querySelector('.mobile-menu-overlay').classList.add('is-open');document.querySelector('.mobile-menu-panel').classList.add('is-open')" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu-overlay" onclick="this.classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')"></div>
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-close">
+      <button onclick="document.querySelector('.mobile-menu-overlay').classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-section-label">Navigation</div>
+    <a href="for-creators.html">For Creators</a>
+    <a href="fans.html">For Fans</a>
+    <a href="celebrities.html">Celebrities</a>
+    <a href="explore.html">Explore</a>
+    <div class="mobile-menu-section-label" style="margin-top:.5rem">More</div>
+    <a href="casting.html">Movie Casting</a>
+    <a href="live-streams.html">Live Streams</a>
+    <a href="business.html">Business</a>
+    <a href="contact.html">Support</a>
+    <div class="mobile-menu-section-label" style="margin-top:.5rem">Account</div>
+    <a href="creator-dashboard.html">Dashboard</a>
+    <a href="settings.html">Edit my page</a>
+    <a href="wallet.html">Wallet</a>
+    <a href="index.html">Log out</a>
+  </div>
+
+  <main>
+    <div class="profile-wrap">
+      <div class="cover-area"></div>
+
+      <div class="profile-header">
+        <div class="profile-avatar">
+          <div class="profile-avatar-fallback">C</div>
+        </div>
+        <span class="creator-badge"><i class="bi bi-patch-check-fill"></i> Creator</span>
+        <div class="active-text">Active yesterday</div>
+        <button class="share-btn" onclick="alert('This is a design preview — sharing is not functional here.');" aria-label="Share profile">
+          <i class="bi bi-upload"></i>
+        </button>
+        <div class="action-links">
+          <a class="action-link" onclick="alert('This is a design preview — reporting is not functional here.');"><i class="bi bi-flag"></i> Report User</a>
+          <a class="action-link" onclick="alert('This is a design preview — restricting is not functional here.');"><i class="bi bi-slash-circle"></i> Restrict</a>
+        </div>
+      </div>
+
+      <div class="stats-row">
+        <div class="stat-group">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Posts</div>
+        </div>
+        <div class="stat-group">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Subscribers</div>
+        </div>
+        <div class="stat-group">
+          <div class="stat-num">0</div>
+          <div class="stat-label">Likes</div>
+        </div>
+      </div>
+
+      <div class="tab-row">
+        <div class="tab-item active">Posts (0)</div>
+        <div class="tab-item">About</div>
+      </div>
+
+      <div class="empty-wrap">
+        <div class="empty-circle"><i class="bi bi-bag"></i></div>
+        <p class="empty-msg">No results have been found</p>
+      </div>
+    </div>
+  </main>
+
+  <footer class="public-shell-footer">
+    <div class="container">
+      <div class="footer-topline"></div>
+      <div class="footer-grid" style="gap: 2rem;">
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">For Creators</h3>
+          <a href="signup.html" style="font-size: .9rem;">Getting Started</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Personal Video Messages</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Revenue Streams</h3>
+          <a href="for-creators.html" style="font-size: .9rem;">Content Monetization</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Paid Phone Calls</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Text Coaching</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Video Consultations</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Support</h3>
+          <a href="contact.html" style="font-size: .9rem;">Help Center</a>
+          <a href="contact.html" style="font-size: .9rem;">Contact Us</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Creator Resources</a>
+          <a href="contact.html" style="font-size: .9rem;">Community</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Advanced</h3>
+          <a href="business.html#token" style="font-size: .9rem;">Token Ecosystem</a>
+          <a href="business.html#presale" style="font-size: .9rem;">Presale Info</a>
+        </div>
+      </div>
+      <div class="footer-bottomline"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding: .75rem 0;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">&copy; 2026 FansFollow.me. All rights reserved.</span>
+          <span style="font-size: .85rem; color: #94a3b8;"><span style="color: #f97316; font-weight: 800;">&#8383;</span> <strong style="color: #fff;">BTC/ETH/USDT/SOL Accepted</strong></span>
+          <a href="privacy.html" style="font-size: .85rem; color: #94a3b8;">Privacy Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="terms.html" style="font-size: .85rem; color: #94a3b8;">Terms of Service</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="cookies.html" style="font-size: .85rem; color: #94a3b8;">Cookie Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="faq.html" style="font-size: .85rem; color: #94a3b8;">FAQ</a>
+        </div>
+        <div style="display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">Follow us:</span>
+          <div class="footer-social" style="display: flex; gap: .5rem;" aria-label="Social links">
+            <a href="https://www.facebook.com/profile.php?id=100089966703593" target="_blank" rel="noopener" aria-label="Facebook" style="color: #94a3b8;"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/fansfollowdotme" target="_blank" rel="noopener" aria-label="Instagram" style="color: #94a3b8;"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@FFMFansFollowME" target="_blank" rel="noopener" aria-label="YouTube" style="color: #94a3b8;"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@fansfollow.me" target="_blank" rel="noopener" aria-label="TikTok" style="color: #94a3b8;"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var bar = document.querySelector('.public-shell-topbar');
+      if (!bar) return;
+      function onScroll() { bar.classList.toggle('scrolled', window.scrollY > 20); }
+      window.addEventListener('scroll', onScroll, {passive: true});
+      onScroll();
+    })();
+
+    document.addEventListener('click', function(e) {
+      var menu = document.getElementById('accountMenu');
+      var trigger = document.querySelector('.account-trigger');
+      if (menu && !menu.contains(e.target) && trigger && !trigger.contains(e.target)) menu.classList.remove('is-open');
+    });
+  </script>
+</body>
+</html>

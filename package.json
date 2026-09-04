@@ -1,0 +1,12 @@
+{
+  "name": "fansfollow-preview",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "serve -l 3000",
+    "build": "mkdir -p dist && cp *.html dist/"
+  },
+  "devDependencies": {
+    "serve": "^14.2.4"
+  }
+}

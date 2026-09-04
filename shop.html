@@ -1,0 +1,471 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="FansFollow.me Shop - Explore products from our creators">
+  <meta name="theme-color" content="#f97316">
+  <title>Shop - FansFollow.me</title>
+  <link href="https://fansfollow.me/img/favicon.png" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f1a;
+      --panel: #151b2c;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --shadow: 0 18px 54px rgba(0, 0, 0, 0.36);
+      --cta-gradient: linear-gradient(135deg, #f97316 0%, #ec4899 48%, #a855f7 100%);
+      --cta-gradient-2: linear-gradient(135deg, #f97316 0%, #9333ea 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background-color: var(--bg); background-image: none; color: var(--text); font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 400; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; color: var(--text); }
+
+    .public-shell-topbar { position: sticky; top: 0; z-index: 40; background: transparent; border-bottom: 1px solid transparent; box-shadow: none; transition: background .3s, border-color .3s, box-shadow .3s; }
+    .public-shell-topbar.scrolled { background: rgba(11,15,26,0.82); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.06); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .public-shell-topbar .inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .public-shell-brand img { height: 30px; width: auto; }
+    .public-shell-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0.15rem; }
+    .public-shell-nav a, .public-shell-nav summary { padding: 0.5rem 0.7rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; color: #cbd5e1; cursor: pointer; list-style: none; transition: background-color .16s ease, color .16s ease, transform .16s ease; }
+    .public-shell-nav a:hover, .public-shell-nav a.active, .public-shell-nav summary:hover, .public-shell-nav details[open] > summary { color: #fb923c; background: none; transform: translateY(-1px); }
+    .public-shell-nav details { position: relative; }
+    .public-shell-nav details > summary::-webkit-details-marker { display: none; }
+    .public-shell-nav summary::after { content: '\25BE'; display: inline-block; margin-left: .35rem; font-size: .82em; line-height: 1; opacity: .8; transform: translateY(-1px); }
+    .public-shell-nav details[open] > summary::after { transform: translateY(-1px) rotate(180deg); }
+    .public-shell-nav-panel { position: absolute; top: calc(100% + .55rem); left: 0; min-width: 220px; padding: .45rem; background: #151b2c; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; box-shadow: var(--shadow); display: grid; gap: .15rem; z-index: 5; }
+    .public-shell-nav-panel a { padding: .7rem .8rem; border-radius: 12px; font-weight: 600; color: #e5e7eb; display: flex; align-items: center; gap: .6rem; }
+    .public-shell-nav-panel a:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .public-shell-actions { display: flex; gap: .6rem; align-items: center; position: relative; }
+    .public-shell-button { border-radius: 12px; font-weight: 700; min-height: 42px; padding: 0.65rem 1.1rem; letter-spacing: -0.01em; border-width: 1px; font-size: .9rem; }
+    .public-shell-button.btn-primary { background: var(--cta-gradient); background-image: var(--cta-gradient); color: #fff; border-color: transparent; box-shadow: 0 10px 20px rgba(249, 115, 22, .3); }
+    .public-shell-button.btn-primary:hover, .public-shell-button.btn-primary:focus { background: linear-gradient(135deg, #f97316 0%, #a855f7 100%); background-image: linear-gradient(135deg, #f97316 0%, #a855f7 100%); color: #fff; }
+    .account-trigger { display: flex; align-items: center; gap: .5rem; cursor: pointer; padding: .35rem .6rem .35rem .35rem; border-radius: 999px; background: rgba(30,41,59,.6); border: 1px solid var(--line); transition: border-color .18s; }
+    .account-trigger:hover { border-color: rgba(255,255,255,.15); }
+    .account-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--cta-gradient-2); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .8rem; flex-shrink: 0; }
+    .account-name { font-size: .85rem; font-weight: 600; color: #e5e7eb; }
+    .account-chevron { font-size: .75rem; color: #94a3b8; }
+    .account-menu { position: absolute; top: calc(100% + .55rem); right: 0; min-width: 240px; padding: .5rem; background: #151b2c; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; box-shadow: var(--shadow); display: none; z-index: 50; }
+    .account-menu.is-open { display: block; }
+    .account-menu a { display: flex; align-items: center; gap: .6rem; padding: .55rem .7rem; border-radius: 10px; color: #94a3b8; font-weight: 600; font-size: .85rem; transition: background .16s, color .16s; }
+    .account-menu a:hover { background: rgba(255,255,255,.06); color: #e5e7eb; }
+    .account-menu a i { font-size: 1rem; width: 1.2rem; text-align: center; color: #64748b; }
+    .account-menu a:hover i { color: #fb923c; }
+    .account-menu .menu-divider { height: 1px; background: var(--line); margin: .35rem .5rem; }
+    .account-menu .menu-balance { padding: .55rem .7rem; border-radius: 10px; margin-bottom: .25rem; background: rgba(249,115,22,.06); border: 1px solid rgba(249,115,22,.12); }
+    .account-menu .menu-balance .bal-label { font-size: .7rem; color: #94a3b8; font-weight: 600; }
+    .account-menu .menu-balance .bal-value { font-size: 1.1rem; color: #fb923c; font-weight: 800; }
+    .public-shell-hamburger { display: none; background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+    .mobile-menu-overlay { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+    .mobile-menu-overlay.is-open { display: block; }
+    .mobile-menu-panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(85vw, 360px); z-index: 101; background: linear-gradient(180deg, #151b2c 0%, #0f172a 100%); border-left: 1px solid rgba(255,255,255,.08); transform: translateX(100%); transition: transform .3s ease; overflow-y: auto; display: flex; flex-direction: column; padding: 1.5rem; }
+    .mobile-menu-panel.is-open { transform: translateX(0); }
+    .mobile-menu-close { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+    .mobile-menu-close button { background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+    .mobile-menu-section-label { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #64748b; padding: .6rem 0; }
+    .mobile-menu-panel a { display: block; padding: .75rem 0; color: #e5e7eb; text-decoration: none; font-size: 1.05rem; font-weight: 600; transition: color .2s; }
+    .mobile-menu-panel a:hover { color: #fb923c; }
+    @media (max-width: 991.98px) {
+      .public-shell-hamburger { display: flex; }
+      .public-shell-topbar .inner { min-height: auto; flex-wrap: wrap; padding: .85rem 0; }
+      .public-shell-brand { flex: 1 1 auto; }
+      .public-shell-brand img { height: 26px; }
+      .account-name, .account-chevron { display: none !important; }
+    }
+
+    .container { max-width: 1280px !important; padding-left: 1rem; padding-right: 1rem; }
+    @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; } }
+
+    .page-header { text-align: center; padding: 2.5rem 1rem 1rem; }
+    .page-header h1 { margin: 0; font-size: 1.75rem; font-weight: 800; color: #fff; }
+    .page-header p { margin: .5rem 0 0; font-size: .9rem; color: var(--muted); }
+
+    .add-new-wrap { text-align: center; margin-bottom: 1.5rem; }
+    .btn-add-new { display: inline-flex; align-items: center; gap: .4rem; padding: .6rem 1.5rem; border-radius: 999px; background: var(--cta-gradient-2); color: #fff; font-weight: 700; font-size: .9rem; border: none; cursor: pointer; transition: filter .18s; box-shadow: 0 8px 20px rgba(249,115,22,.25); }
+    .btn-add-new:hover { filter: brightness(1.12); }
+
+    .filter-bar { display: flex; gap: .75rem; margin-bottom: 2rem; flex-wrap: wrap; }
+    .filter-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .55rem 1.1rem; background: var(--panel); border: 1px solid var(--line); border-radius: 10px; color: #e5e7eb; font-weight: 600; font-size: .85rem; cursor: pointer; transition: border-color .18s; }
+    .filter-btn:hover { border-color: rgba(255,255,255,.18); }
+    .filter-btn i { font-size: .8rem; color: var(--muted); }
+
+    .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-bottom: 2.5rem; }
+    @media (max-width: 991.98px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 575.98px) { .product-grid { grid-template-columns: 1fr; } }
+
+    .product-card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; overflow: hidden; transition: transform .2s, border-color .2s; }
+    .product-card:hover { transform: translateY(-3px); border-color: rgba(249,115,22,.2); }
+    .product-image { position: relative; aspect-ratio: 1; background: #1e293b; display: flex; align-items: center; justify-content: center; overflow: hidden; }
+    .product-image .mockup { width: 70%; height: auto; }
+    .product-badge { position: absolute; top: .75rem; left: .75rem; display: inline-flex; align-items: center; gap: .35rem; padding: .3rem .65rem; border-radius: 999px; background: rgba(13,17,23,.8); backdrop-filter: blur(4px); color: #e5e7eb; font-size: .72rem; font-weight: 600; border: 1px solid rgba(255,255,255,.1); }
+    .product-badge i { font-size: .85rem; }
+    .price-tag { position: absolute; bottom: .75rem; right: .75rem; padding: .35rem .8rem; border-radius: 999px; background: linear-gradient(135deg, #f97316, #ec4899); color: #fff; font-size: .82rem; font-weight: 800; box-shadow: 0 4px 12px rgba(249,115,22,.3); }
+    .product-info { padding: 1rem; }
+    .product-name { font-size: .9rem; font-weight: 700; color: #fff; margin: 0 0 .35rem; }
+    .product-desc { font-size: .78rem; color: var(--muted); margin: 0 0 .75rem; line-height: 1.4; }
+    .seller-row { display: flex; align-items: center; gap: .5rem; }
+    .seller-avatar { width: 26px; height: 26px; border-radius: 50%; background: var(--cta-gradient-2); display: flex; align-items: center; justify-content: center; font-size: .65rem; font-weight: 800; color: #fff; flex-shrink: 0; }
+    .seller-name { font-size: .8rem; font-weight: 600; color: var(--muted); }
+    .seller-name:hover { color: #fb923c; }
+
+    .pagination-row { display: flex; align-items: center; justify-content: center; gap: .5rem; padding-bottom: 3rem; }
+    .page-btn { width: 38px; height: 38px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); color: #e5e7eb; font-weight: 700; font-size: .88rem; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: border-color .18s, background .18s; }
+    .page-btn:hover { border-color: rgba(255,255,255,.18); background: #1c2438; }
+    .page-btn.active { background: var(--cta-gradient-2); border-color: transparent; color: #fff; }
+    .page-btn:disabled { opacity: .4; cursor: default; }
+
+    .public-shell-footer { padding: 1.5rem 0 1.2rem; color: var(--muted); background: linear-gradient(135deg, #111827, #1f2937, #111827); border-top: 1px solid #1f293b; }
+    .public-shell-footer .footer-topline, .public-shell-footer .footer-bottomline { height: 3px; width: 100%; border-radius: 999px; background: linear-gradient(90deg, rgba(249,115,22,0) 0%, rgba(249,115,22,.85) 18%, rgba(168,85,247,.95) 50%, rgba(236,72,153,.85) 82%, rgba(236,72,153,0) 100%); opacity: .95; }
+    .public-shell-footer .footer-topline { margin-bottom: 1rem; }
+    .public-shell-footer .footer-bottomline { margin-top: 1.5rem; margin-bottom: .75rem; }
+    .public-shell-footer .footer-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+    .public-shell-footer h3 { margin: 0 0 .75rem; font-size: .875rem; font-weight: 700; color: #fff; position: relative; padding-bottom: .75rem; }
+    .public-shell-footer h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 32px; height: 2px; border-radius: 999px; background: var(--cta-gradient); }
+    .public-shell-footer .footer-links a { display: block; padding: .15rem 0; color: #9ca3af; font-size: .75rem; line-height: 1.4; }
+    .public-shell-footer .footer-links a:hover { color: #fff; }
+    .public-shell-footer .footer-social { display: inline-flex; gap: .5rem; }
+    .public-shell-footer .footer-social a { width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: #1f2937; color: #9ca3af; border: 1px solid rgba(255,255,255,.08); }
+    .public-shell-footer .footer-social a:hover { background: rgba(249,115,22,.16); border-color: rgba(249,115,22,.24); color: #fff; }
+    @media (max-width: 991.98px) {
+      .public-shell-footer { padding: 2rem 0 1.5rem; }
+      .public-shell-footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    }
+
+    .sale-modal-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,.65); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .sale-modal-overlay.is-open { display: flex; }
+    .sale-modal { width: 100%; max-width: 600px; background: #0d1117; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 24px 64px rgba(0,0,0,.5); padding: 1.75rem; }
+    .sale-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.5rem; }
+    .sale-modal-header-left { display: flex; align-items: center; gap: .6rem; }
+    .sale-modal-header-left i { font-size: 1.4rem; color: #fb923c; }
+    .sale-modal-header-left h2 { font-size: 1.25rem; font-weight: 800; color: #fff; margin: 0; }
+    .sale-modal-close { background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; width: 36px; height: 36px; display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: background .18s, color .18s; }
+    .sale-modal-close:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .sale-option { display: flex; align-items: flex-start; gap: 1rem; padding: 1.1rem 1.25rem; border: 1px solid var(--line); border-radius: 14px; background: #151b2c; cursor: pointer; transition: background .18s, border-color .18s, transform .18s; margin-bottom: .85rem; text-decoration: none; color: inherit; }
+    .sale-option:last-child { margin-bottom: 0; }
+    .sale-option:hover { background: #1c2438; border-color: rgba(249,115,22,.25); transform: translateY(-1px); }
+    .sale-option.default-active { border-color: rgba(249,115,22,.4); }
+    .sale-option-icon { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; background: rgba(249,115,22,.1); color: #fb923c; border: 1px solid rgba(249,115,22,.15); flex-shrink: 0; }
+    .sale-option-text { display: flex; flex-direction: column; gap: .2rem; }
+    .sale-option-title { font-size: 1rem; font-weight: 700; color: #fff; }
+    .sale-option-desc { font-size: .82rem; color: var(--muted); line-height: 1.4; }
+    @media (max-width: 575.98px) {
+      .sale-modal { padding: 1.25rem; }
+      .sale-modal-header-left h2 { font-size: 1.05rem; }
+      .sale-option { padding: .9rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="public-shell-topbar">
+    <div class="container inner">
+      <a class="public-shell-brand" href="index.html" aria-label="FansFollow.me">
+        <img src="https://fansfollow.me/public/img/logo_2-1718299542.png" alt="FansFollow.me" width="120" height="30">
+      </a>
+      <nav class="public-shell-nav d-none d-lg-flex" aria-label="Primary">
+        <a href="for-creators.html">For Creators</a>
+        <a href="fans.html">For Fans</a>
+        <a href="celebrities.html">Celebrities</a>
+        <a href="explore.html">Explore</a>
+        <details class="public-shell-more">
+          <summary>More</summary>
+          <div class="public-shell-nav-panel">
+            <a href="casting.html"><i class="bi bi-film"></i> Movie Casting</a>
+            <a href="live-streams.html"><i class="bi bi-broadcast"></i> Live Streams</a>
+            <a href="business.html"><i class="bi bi-briefcase"></i> Business</a>
+            <a href="contact.html"><i class="bi bi-chat-dots"></i> Support</a>
+          </div>
+        </details>
+      </nav>
+      <div class="public-shell-actions">
+        <a class="btn btn-primary public-shell-button" href="settings.html"><i class="bi bi-pencil" style="margin-right:.35rem;"></i>Edit my page</a>
+        <div class="account-trigger" onclick="document.getElementById('accountMenu').classList.toggle('is-open')">
+          <div class="account-avatar">FF</div>
+          <span class="account-name d-none d-lg-inline">Creator</span>
+          <i class="bi bi-chevron-down account-chevron d-none d-lg-inline"></i>
+        </div>
+        <div class="account-menu" id="accountMenu">
+          <div class="menu-balance"><div class="bal-label">Balance</div><div class="bal-value">&pound;0.00</div></div>
+          <a href="wallet.html"><i class="bi bi-wallet2"></i> Wallet</a>
+          <a href="my-page.html"><i class="bi bi-person"></i> My page</a>
+          <a href="creator-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+          <a href="#"><i class="bi bi-file-earmark-plus"></i> My Posts</a>
+          <a href="#"><i class="bi bi-safe"></i> Vault</a>
+          <div class="menu-divider"></div>
+          <a href="#"><i class="bi bi-people"></i> My subscribers</a>
+          <a href="subscriptions.html"><i class="bi bi-person-check"></i> My subscriptions</a>
+          <a href="bookmarks.html"><i class="bi bi-bookmark"></i> Bookmarks</a>
+          <a href="#"><i class="bi bi-heart"></i> Likes</a>
+          <div class="menu-divider"></div>
+          <a href="#"><i class="bi bi-moon-stars"></i> Dark mode</a>
+          <a href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+      </div>
+      <button class="public-shell-hamburger" onclick="document.querySelector('.mobile-menu-overlay').classList.add('is-open');document.querySelector('.mobile-menu-panel').classList.add('is-open')" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu-overlay" onclick="this.classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')"></div>
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-close">
+      <button onclick="document.querySelector('.mobile-menu-overlay').classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-section-label">Navigation</div>
+    <a href="for-creators.html">For Creators</a>
+    <a href="fans.html">For Fans</a>
+    <a href="celebrities.html">Celebrities</a>
+    <a href="explore.html">Explore</a>
+    <div class="mobile-menu-section-label" style="margin-top:.5rem">More</div>
+    <a href="casting.html">Movie Casting</a>
+    <a href="live-streams.html">Live Streams</a>
+    <a href="business.html">Business</a>
+    <a href="contact.html">Support</a>
+    <div class="mobile-menu-section-label" style="margin-top:.5rem">Account</div>
+    <a href="creator-dashboard.html">Dashboard</a>
+    <a href="settings.html">Edit my page</a>
+    <a href="wallet.html">Wallet</a>
+    <a href="index.html">Log out</a>
+  </div>
+
+  <main>
+    <div class="container">
+      <div class="page-header">
+        <h1>Shop</h1>
+        <p>Explore products from our creators</p>
+      </div>
+
+      <div class="add-new-wrap">
+        <button class="btn-add-new" onclick="document.getElementById('saleModal').classList.add('is-open')"><i class="bi bi-plus-lg"></i> Add New</button>
+      </div>
+
+      <div class="filter-bar">
+        <button class="filter-btn"><i class="bi bi-clock"></i> Latest <i class="bi bi-chevron-down" style="margin-left:.2rem;"></i></button>
+        <button class="filter-btn"><i class="bi bi-grid"></i> All Categories <i class="bi bi-chevron-down" style="margin-left:.2rem;"></i></button>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card">
+          <div class="product-image">
+            <svg class="mockup" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ts1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#e2e8f0"/></linearGradient></defs><path d="M50 50 L50 160 Q50 170 60 170 L140 170 Q150 170 150 160 L150 50 L170 55 L170 75 L160 75 L160 50 Q160 40 150 40 L120 40 Q120 25 100 25 Q80 25 80 40 L50 40 Q40 40 40 50 L40 75 L30 75 L30 55 Z" fill="url(#ts1)" stroke="#cbd5e1" stroke-width="1.5"/><text x="100" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="800" fill="#f97316">FFM</text></svg>
+            <span class="product-badge"><i class="bi bi-controller"></i> Physical products</span>
+            <span class="price-tag">&pound;9.99</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">White FFM round collar T Shirt XL</h3>
+            <p class="product-desc">White FFM round collar T Shirt XL</p>
+            <div class="seller-row">
+              <div class="seller-avatar">FM</div>
+              <a href="#" class="seller-name">@FFM-Martin</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <svg class="mockup" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cap1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e293b"/><stop offset="1" stop-color="#0f172a"/></linearGradient></defs><path d="M40 130 Q40 80 100 75 Q160 80 160 130 L170 130 L170 145 L30 145 L30 130 Z" fill="url(#cap1)" stroke="#475569" stroke-width="1.5"/><ellipse cx="100" cy="145" rx="75" ry="12" fill="#334155" stroke="#475569" stroke-width="1.5"/><text x="100" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="800" fill="#f97316">FFM</text></svg>
+            <span class="product-badge"><i class="bi bi-controller"></i> Physical products</span>
+            <span class="price-tag">&pound;7.99</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">FFM Snapback Cap Black</h3>
+            <p class="product-desc">FFM Snapback Cap Black</p>
+            <div class="seller-row">
+              <div class="seller-avatar">FM</div>
+              <a href="#" class="seller-name">@FFM-Martin</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <svg class="mockup" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="vest1" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#334155"/><stop offset="1" stop-color="#1e293b"/></linearGradient></defs><path d="M55 45 L55 170 Q55 178 63 178 L137 178 Q145 178 145 170 L145 45 L120 45 L120 35 L80 35 L80 45 Z" fill="url(#vest1)" stroke="#475569" stroke-width="1.5"/><text x="100" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="20" font-weight="800" fill="#f97316">FFM</text></svg>
+            <span class="product-badge"><i class="bi bi-controller"></i> Physical products</span>
+            <span class="price-tag">&pound;12.99</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">FFM Trainer Vest Navy</h3>
+            <p class="product-desc">FFM Trainer Vest Navy</p>
+            <div class="seller-row">
+              <div class="seller-avatar">FM</div>
+              <a href="#" class="seller-name">@FFM-Martin</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <svg class="mockup" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="ts2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#1e293b"/><stop offset="1" stop-color="#0f172a"/></linearGradient></defs><path d="M50 50 L50 160 Q50 170 60 170 L140 170 Q150 170 150 160 L150 50 L170 55 L170 75 L160 75 L160 50 Q160 40 150 40 L120 40 Q120 25 100 25 Q80 25 80 40 L50 40 Q40 40 40 50 L40 75 L30 75 L30 55 Z" fill="url(#ts2)" stroke="#475569" stroke-width="1.5"/><text x="100" y="115" text-anchor="middle" font-family="Inter,sans-serif" font-size="22" font-weight="800" fill="#f97316">FFM</text></svg>
+            <span class="product-badge"><i class="bi bi-controller"></i> Physical products</span>
+            <span class="price-tag">&pound;9.99</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">Black FFM round collar T Shirt L</h3>
+            <p class="product-desc">Black FFM round collar T Shirt L</p>
+            <div class="seller-row">
+              <div class="seller-avatar">FM</div>
+              <a href="#" class="seller-name">@FFM-Martin</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <svg class="mockup" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="cap2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#e2e8f0"/></linearGradient></defs><path d="M40 130 Q40 80 100 75 Q160 80 160 130 L170 130 L170 145 L30 145 L30 130 Z" fill="url(#cap2)" stroke="#cbd5e1" stroke-width="1.5"/><ellipse cx="100" cy="145" rx="75" ry="12" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="1.5"/><text x="100" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="16" font-weight="800" fill="#f97316">FFM</text></svg>
+            <span class="product-badge"><i class="bi bi-controller"></i> Physical products</span>
+            <span class="price-tag">&pound;7.99</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">FFM Snapback Cap White</h3>
+            <p class="product-desc">FFM Snapback Cap White</p>
+            <div class="seller-row">
+              <div class="seller-avatar">FM</div>
+              <a href="#" class="seller-name">@FFM-Martin</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="product-card">
+          <div class="product-image">
+            <svg class="mockup" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg"><defs><linearGradient id="vest2" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#f8fafc"/><stop offset="1" stop-color="#e2e8f0"/></linearGradient></defs><path d="M55 45 L55 170 Q55 178 63 178 L137 178 Q145 178 145 170 L145 45 L120 45 L120 35 L80 35 L80 45 Z" fill="url(#vest2)" stroke="#cbd5e1" stroke-width="1.5"/><text x="100" y="120" text-anchor="middle" font-family="Inter,sans-serif" font-size="20" font-weight="800" fill="#f97316">FFM</text></svg>
+            <span class="product-badge"><i class="bi bi-controller"></i> Physical products</span>
+            <span class="price-tag">&pound;12.99</span>
+          </div>
+          <div class="product-info">
+            <h3 class="product-name">FFM Trainer Vest Grey</h3>
+            <p class="product-desc">FFM Trainer Vest Grey</p>
+            <div class="seller-row">
+              <div class="seller-avatar">FM</div>
+              <a href="#" class="seller-name">@FFM-Martin</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="pagination-row">
+        <button class="page-btn" disabled><i class="bi bi-chevron-left"></i></button>
+        <button class="page-btn active">1</button>
+        <button class="page-btn">2</button>
+        <button class="page-btn"><i class="bi bi-chevron-right"></i></button>
+      </div>
+    </div>
+  </main>
+
+  <footer class="public-shell-footer">
+    <div class="container">
+      <div class="footer-topline"></div>
+      <div class="footer-grid" style="gap: 2rem;">
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">For Creators</h3>
+          <a href="signup.html" style="font-size: .9rem;">Getting Started</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Personal Video Messages</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Revenue Streams</h3>
+          <a href="for-creators.html" style="font-size: .9rem;">Content Monetization</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Paid Phone Calls</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Text Coaching</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Video Consultations</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Support</h3>
+          <a href="contact.html" style="font-size: .9rem;">Help Center</a>
+          <a href="contact.html" style="font-size: .9rem;">Contact Us</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Creator Resources</a>
+          <a href="contact.html" style="font-size: .9rem;">Community</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Advanced</h3>
+          <a href="business.html#token" style="font-size: .9rem;">Token Ecosystem</a>
+          <a href="business.html#presale" style="font-size: .9rem;">Presale Info</a>
+        </div>
+      </div>
+      <div class="footer-bottomline"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding: .75rem 0;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">&copy; 2026 FansFollow.me. All rights reserved.</span>
+          <span style="font-size: .85rem; color: #94a3b8;"><span style="color: #f97316; font-weight: 800;">&#8383;</span> <strong style="color: #fff;">BTC/ETH/USDT/SOL Accepted</strong></span>
+          <a href="privacy.html" style="font-size: .85rem; color: #94a3b8;">Privacy Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="terms.html" style="font-size: .85rem; color: #94a3b8;">Terms of Service</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="cookies.html" style="font-size: .85rem; color: #94a3b8;">Cookie Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="faq.html" style="font-size: .85rem; color: #94a3b8;">FAQ</a>
+        </div>
+        <div style="display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">Follow us:</span>
+          <div class="footer-social" style="display: flex; gap: .5rem;" aria-label="Social links">
+            <a href="https://www.facebook.com/profile.php?id=100089966703593" target="_blank" rel="noopener" aria-label="Facebook" style="color: #94a3b8;"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/fansfollowdotme" target="_blank" rel="noopener" aria-label="Instagram" style="color: #94a3b8;"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@FFMFansFollowME" target="_blank" rel="noopener" aria-label="YouTube" style="color: #94a3b8;"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@fansfollow.me" target="_blank" rel="noopener" aria-label="TikTok" style="color: #94a3b8;"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="sale-modal-overlay" id="saleModal" onclick="if(event.target===this)this.classList.remove('is-open')">
+    <div class="sale-modal">
+      <div class="sale-modal-header">
+        <div class="sale-modal-header-left">
+          <i class="bi bi-tag"></i>
+          <h2>Choose the type of sale</h2>
+        </div>
+        <button class="sale-modal-close" onclick="document.getElementById('saleModal').classList.remove('is-open')" aria-label="Close">&times;</button>
+      </div>
+      <a href="add-physical-product.html" class="sale-option">
+        <div class="sale-option-icon"><i class="bi bi-controller"></i></div>
+        <div class="sale-option-text">
+          <span class="sale-option-title">Physical products</span>
+          <span class="sale-option-desc">T-shirts, mugs, shoes, video games, etc.</span>
+        </div>
+      </a>
+      <div class="sale-option default-active" onclick="alert('This is a design preview — digital products are not functional here.')">
+        <div class="sale-option-icon"><i class="bi bi-cloud-download"></i></div>
+        <div class="sale-option-text">
+          <span class="sale-option-title">Digital products</span>
+          <span class="sale-option-desc">Downloadable products, image packages, videos, etc.</span>
+        </div>
+      </div>
+      <div class="sale-option" onclick="alert('This is a design preview — custom content is not functional here.')">
+        <div class="sale-option-icon"><i class="bi bi-lightning-charge"></i></div>
+        <div class="sale-option-text">
+          <span class="sale-option-title">Custom content</span>
+          <span class="sale-option-desc">Custom videos, video calls, greeting messages, etc.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var bar = document.querySelector('.public-shell-topbar');
+      if (!bar) return;
+      function onScroll() { bar.classList.toggle('scrolled', window.scrollY > 20); }
+      window.addEventListener('scroll', onScroll, {passive: true});
+      onScroll();
+    })();
+
+    document.addEventListener('click', function(e) {
+      var menu = document.getElementById('accountMenu');
+      var trigger = document.querySelector('.account-trigger');
+      if (menu && !menu.contains(e.target) && trigger && !trigger.contains(e.target)) menu.classList.remove('is-open');
+    });
+  </script>
+</body>
+</html>

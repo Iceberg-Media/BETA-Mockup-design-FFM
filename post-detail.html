@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="FFM-Martin's post on FansFollow.me">
+  <meta name="theme-color" content="#f97316">
+  <title>Post by FFM-Martin - FansFollow.me</title>
+  <link href="https://fansfollow.me/img/favicon.png" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f1a;
+      --panel: #151b2c;
+      --panel-2: #1a2238;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --shadow: 0 18px 54px rgba(0, 0, 0, 0.36);
+      --cta-gradient: linear-gradient(135deg, #f97316 0%, #ec4899 48%, #a855f7 100%);
+      --cta-gradient-2: linear-gradient(135deg, #f97316 0%, #9333ea 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background-color: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-weight: 400; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; color: var(--text); }
+
+    .public-shell-topbar { position: sticky; top: 0; z-index: 40; background: transparent; border-bottom: 1px solid transparent; transition: background .3s, border-color .3s, box-shadow .3s; }
+    .public-shell-topbar.scrolled { background: rgba(11,15,26,0.82); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.06); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .public-shell-topbar .inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .public-shell-brand img { height: 30px; width: auto; }
+    .public-shell-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0.15rem; }
+    .public-shell-nav a, .public-shell-nav summary { padding: 0.5rem 0.7rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; color: #cbd5e1; cursor: pointer; list-style: none; transition: color .16s, transform .16s; }
+    .public-shell-nav a:hover, .public-shell-nav a.active, .public-shell-nav summary:hover, .public-shell-nav details[open] > summary { color: #fb923c; transform: translateY(-1px); }
+    .public-shell-nav details { position: relative; }
+    .public-shell-nav details > summary::-webkit-details-marker { display: none; }
+    .public-shell-nav summary::after { content: '\25BE'; margin-left: .35rem; font-size: .82em; opacity: .8; }
+    .public-shell-nav details[open] > summary::after { transform: rotate(180deg); }
+    .public-shell-nav-panel { position: absolute; top: calc(100% + .55rem); left: 0; min-width: 220px; padding: .45rem; background: #151b2c; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; box-shadow: var(--shadow); display: grid; gap: .15rem; z-index: 5; }
+    .public-shell-nav-panel a { padding: .7rem .8rem; border-radius: 12px; font-weight: 600; color: #e5e7eb; display: flex; align-items: center; gap: .6rem; }
+    .public-shell-nav-panel a:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .public-shell-actions { display: flex; gap: .6rem; align-items: center; }
+    .public-shell-button { border-radius: 12px; font-weight: 700; min-height: 42px; padding: 0.65rem 1.1rem; letter-spacing: -0.01em; border-width: 1px; font-size: .9rem; }
+    .public-shell-button.btn-primary { background: var(--cta-gradient); color: #fff; border-color: transparent; box-shadow: 0 10px 20px rgba(249,115,22,.3); }
+    .public-shell-button.btn-primary:hover, .public-shell-button.btn-primary:focus { background: linear-gradient(135deg, #f97316 0%, #a855f7 100%); color: #fff; }
+    .public-shell-hamburger { display: none; background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+    .mobile-menu-overlay { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+    .mobile-menu-overlay.is-open { display: block; }
+    .mobile-menu-panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(85vw, 360px); z-index: 101; background: linear-gradient(180deg, #151b2c 0%, #0f172a 100%); border-left: 1px solid rgba(255,255,255,.08); transform: translateX(100%); transition: transform .3s ease; overflow-y: auto; display: flex; flex-direction: column; padding: 1.5rem; }
+    .mobile-menu-panel.is-open { transform: translateX(0); }
+    .mobile-menu-close { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+    .mobile-menu-close button { background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+    .mobile-menu-section-label { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #64748b; padding: .6rem 0; }
+    .mobile-menu-panel a { display: block; padding: .75rem 0; color: #e5e7eb; font-size: 1.05rem; font-weight: 600; }
+    .mobile-menu-panel a:hover { color: #fb923c; }
+    .mobile-menu-panel .mobile-cta-btn { display: block; width: 100%; padding: 1rem; margin-top: 1rem; border-radius: 12px; font-weight: 800; font-size: 1rem; text-align: center; color: #fff; background: var(--cta-gradient); min-height: 56px; box-shadow: 0 14px 28px rgba(249,115,22,.24); }
+    @media (max-width: 991.98px) {
+      .public-shell-hamburger { display: flex; }
+      .public-shell-topbar .inner { min-height: auto; flex-wrap: wrap; padding: .85rem 0; }
+      .public-shell-brand { flex: 1 1 auto; }
+      .public-shell-brand img { height: 26px; }
+      .public-shell-actions { display: none; }
+    }
+
+    .container { max-width: 1280px !important; padding-left: 1rem; padding-right: 1rem; }
+    @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; } }
+
+    .detail-layout { display: grid; grid-template-columns: 1fr 320px; gap: 2rem; max-width: 1280px; margin: 0 auto; padding: 2rem 1rem 3rem; }
+    @media (max-width: 991.98px) { .detail-layout { grid-template-columns: 1fr; padding: 1.5rem 1rem 2rem; } }
+
+    .post-detail-card { background: var(--panel); border: 1px solid var(--line); border-radius: 18px; padding: 1.5rem; }
+    @media (max-width: 575.98px) { .post-detail-card { padding: 1.25rem 1rem; } }
+
+    .pinned-label { font-size: .75rem; font-weight: 600; color: var(--muted); margin-bottom: .75rem; display: flex; align-items: center; gap: .35rem; }
+    .pinned-label i { font-size: .85rem; color: #fb923c; }
+
+    .author-row { display: flex; align-items: center; gap: .75rem; margin-bottom: 1.25rem; }
+    .author-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--cta-gradient-2); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .9rem; flex-shrink: 0; }
+    .author-info { flex: 1; min-width: 0; }
+    .author-name { font-size: .95rem; font-weight: 700; color: #fff; }
+    .author-handle { font-size: .8rem; color: var(--muted); }
+    .author-more { background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer; padding: .25rem .5rem; border-radius: 8px; transition: color .18s, background .18s; }
+    .author-more:hover { color: #e5e7eb; background: rgba(255,255,255,.06); }
+
+    .post-body { font-size: .92rem; line-height: 1.7; color: #d1d5db; margin-bottom: 1.25rem; }
+    .post-body p { margin: 0 0 .85rem; }
+
+    .post-actions { display: flex; align-items: center; gap: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--line); }
+    .action-btn { display: inline-flex; align-items: center; gap: .35rem; background: none; border: none; color: #94a3b8; font-size: .85rem; font-weight: 600; cursor: pointer; transition: color .18s; }
+    .action-btn:hover { color: #fb923c; }
+    .action-btn i { font-size: 1.1rem; }
+
+    .post-summary { font-size: .8rem; color: var(--muted); margin-top: .75rem; }
+
+    .comments-section { margin-top: 1.5rem; }
+    .comments-title { font-size: .88rem; font-weight: 700; color: #fff; margin-bottom: 1rem; }
+
+    .comment-item { display: flex; gap: .75rem; padding: .85rem 0; border-top: 1px solid var(--line); }
+    .comment-avatar { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .8rem; flex-shrink: 0; }
+    .comment-avatar.purple { background: linear-gradient(135deg, #a855f7, #6366f1); }
+    .comment-avatar.orange { background: linear-gradient(135deg, #f97316, #ec4899); }
+    .comment-body { flex: 1; min-width: 0; }
+    .comment-header { display: flex; align-items: center; gap: .5rem; margin-bottom: .2rem; }
+    .comment-name { font-size: .85rem; font-weight: 700; color: #fff; }
+    .comment-time { font-size: .72rem; color: #475569; }
+    .comment-text { font-size: .85rem; color: #d1d5db; line-height: 1.5; }
+    .comment-actions { display: flex; align-items: center; gap: 1rem; margin-top: .35rem; }
+    .comment-action { font-size: .75rem; font-weight: 600; color: var(--muted); cursor: pointer; transition: color .18s; display: inline-flex; align-items: center; gap: .25rem; }
+    .comment-action:hover { color: #fb923c; }
+    .comment-action i { font-size: .85rem; }
+
+    .explore-sidebar { position: sticky; top: 90px; }
+    @media (max-width: 991.98px) { .explore-sidebar { position: static; } }
+    .sidebar-title { font-size: .8rem; font-weight: 700; text-transform: uppercase; color: var(--muted); margin-bottom: 1rem; letter-spacing: .06em; }
+
+    .rec-card { background: var(--panel); border: 1px solid var(--line); border-radius: 14px; overflow: hidden; margin-bottom: 1rem; transition: border-color .2s, transform .2s; }
+    .rec-card:hover { border-color: rgba(249,115,22,.2); transform: translateY(-2px); }
+    .rec-banner { height: 60px; background: linear-gradient(135deg, #1e293b, #0f172a); position: relative; }
+    .rec-banner.b1 { background: linear-gradient(135deg, #1e3a5f, #0f172a); }
+    .rec-banner.b2 { background: linear-gradient(135deg, #3b0764, #1e1b4b); }
+    .rec-banner.b3 { background: linear-gradient(135deg, #7c2d12, #422006); }
+    .rec-free-badge { position: absolute; top: .5rem; left: .5rem; padding: .15rem .5rem; border-radius: 6px; background: rgba(34,197,94,.9); color: #fff; font-size: .62rem; font-weight: 800; letter-spacing: .05em; }
+    .rec-avatar { width: 40px; height: 40px; border-radius: 50%; border: 3px solid var(--panel); margin-top: -20px; margin-left: 1rem; display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .85rem; }
+    .rec-avatar.a1 { background: linear-gradient(135deg, #3b82f6, #1d4ed8); }
+    .rec-avatar.a2 { background: linear-gradient(135deg, #ec4899, #a855f7); }
+    .rec-avatar.a3 { background: linear-gradient(135deg, #f97316, #eab308); }
+    .rec-info { padding: .65rem 1rem .85rem; }
+    .rec-name { font-size: .88rem; font-weight: 700; color: #fff; }
+    .rec-handle { font-size: .76rem; color: var(--muted); margin-bottom: .5rem; }
+    .rec-stats { display: flex; gap: .85rem; }
+    .rec-stat { display: inline-flex; align-items: center; gap: .25rem; font-size: .72rem; color: #64748b; font-weight: 600; }
+    .rec-stat i { font-size: .8rem; }
+
+    .public-shell-footer { padding: 1.5rem 0 1.2rem; color: var(--muted); background: linear-gradient(135deg, #111827, #1f2937, #111827); border-top: 1px solid #1f293b; }
+    .public-shell-footer .footer-topline, .public-shell-footer .footer-bottomline { height: 3px; width: 100%; border-radius: 999px; background: linear-gradient(90deg, rgba(249,115,22,0) 0%, rgba(249,115,22,.85) 18%, rgba(168,85,247,.95) 50%, rgba(236,72,153,.85) 82%, rgba(236,72,153,0) 100%); opacity: .95; }
+    .public-shell-footer .footer-topline { margin-bottom: 1rem; }
+    .public-shell-footer .footer-bottomline { margin-top: 1.5rem; margin-bottom: .75rem; }
+    .public-shell-footer .footer-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+    .public-shell-footer h3 { margin: 0 0 .75rem; font-size: .875rem; font-weight: 700; color: #fff; position: relative; padding-bottom: .75rem; }
+    .public-shell-footer h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 32px; height: 2px; border-radius: 999px; background: var(--cta-gradient); }
+    .public-shell-footer .footer-links a { display: block; padding: .15rem 0; color: #9ca3af; font-size: .75rem; line-height: 1.4; }
+    .public-shell-footer .footer-links a:hover { color: #fff; }
+    .public-shell-footer .footer-social { display: inline-flex; gap: .5rem; }
+    .public-shell-footer .footer-social a { width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: #1f2937; color: #9ca3af; border: 1px solid rgba(255,255,255,.08); }
+    .public-shell-footer .footer-social a:hover { background: rgba(249,115,22,.16); border-color: rgba(249,115,22,.24); color: #fff; }
+    @media (max-width: 991.98px) {
+      .public-shell-footer { padding: 2rem 0 1.5rem; }
+      .public-shell-footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="public-shell-topbar">
+    <div class="container inner">
+      <a class="public-shell-brand" href="index.html" aria-label="FansFollow.me">
+        <img src="https://fansfollow.me/public/img/logo_2-1718299542.png" alt="FansFollow.me" width="120" height="30">
+      </a>
+      <nav class="public-shell-nav d-none d-lg-flex" aria-label="Primary">
+        <a href="for-creators.html">For Creators</a>
+        <a href="fans.html">For Fans</a>
+        <a href="celebrities.html">Celebrities</a>
+        <a href="explore.html">Explore</a>
+        <details class="public-shell-more">
+          <summary>More</summary>
+          <div class="public-shell-nav-panel">
+            <a href="casting.html"><i class="bi bi-film"></i> Movie Casting</a>
+            <a href="live-streams.html"><i class="bi bi-broadcast"></i> Live Streams</a>
+            <a href="business.html"><i class="bi bi-briefcase"></i> Business</a>
+            <a href="contact.html"><i class="bi bi-chat-dots"></i> Support</a>
+          </div>
+        </details>
+      </nav>
+      <div class="public-shell-actions">
+        <a class="btn btn-primary public-shell-button" href="creator-dashboard.html">Dashboard</a>
+      </div>
+      <button class="public-shell-hamburger" onclick="document.querySelector('.mobile-menu-overlay').classList.add('is-open');document.querySelector('.mobile-menu-panel').classList.add('is-open')" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu-overlay" onclick="this.classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')"></div>
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-close">
+      <button onclick="document.querySelector('.mobile-menu-overlay').classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-section-label">Navigation</div>
+    <a href="for-creators.html">For Creators</a>
+    <a href="fans.html">For Fans</a>
+    <a href="celebrities.html">Celebrities</a>
+    <a href="explore.html">Explore</a>
+    <div class="mobile-menu-section-label" style="margin-top:.5rem">More</div>
+    <a href="casting.html">Movie Casting</a>
+    <a href="live-streams.html">Live Streams</a>
+    <a href="business.html">Business</a>
+    <a href="contact.html">Support</a>
+    <a href="creator-dashboard.html" class="mobile-cta-btn">Dashboard</a>
+  </div>
+
+  <main>
+    <div class="detail-layout">
+      <div class="detail-main">
+        <article class="post-detail-card">
+          <div class="pinned-label"><i class="bi bi-pin-angle-fill"></i> Pinned Post</div>
+
+          <div class="author-row">
+            <div class="author-avatar">FM</div>
+            <div class="author-info">
+              <div class="author-name">FFM-Martin</div>
+              <div class="author-handle">@FFM-Martin</div>
+            </div>
+            <button class="author-more" onclick="alert('This is a design preview — more options are not functional here.');" aria-label="More options">&bull;&bull;&bull;</button>
+          </div>
+
+          <div class="post-body">
+            <p>Welcome everyone to my official FansFollow.me page! This is where I'll be sharing exclusive behind-the-scenes content from our latest productions, training sessions, and creator collaborations.</p>
+            <p>As an FFM Director, I'm passionate about building a platform where creators can truly connect with their fans and monetize their content in meaningful ways. Over the coming weeks I'll be posting regular updates, sneak peeks, and personal messages just for my subscribers.</p>
+            <p>If you haven't already, make sure to subscribe so you don't miss out on any of the exclusive content. Let's build something special together!</p>
+          </div>
+
+          <div class="post-actions">
+            <button class="action-btn" onclick="this.querySelector('i').classList.toggle('bi-heart-fill'); this.querySelector('i').classList.toggle('bi-heart'); this.style.color = this.querySelector('i').classList.contains('bi-heart-fill') ? '#ec4899' : '';"><i class="bi bi-heart"></i> Like</button>
+            <button class="action-btn"><i class="bi bi-chat"></i> Comment</button>
+            <button class="action-btn"><i class="bi bi-bookmark"></i> Save</button>
+          </div>
+
+          <div class="post-summary">2 likes &nbsp;&bull;&nbsp; 1 comment</div>
+        </article>
+
+        <div class="comments-section">
+          <div class="comments-title">Comments</div>
+
+          <div class="comment-item">
+            <div class="comment-avatar purple">J</div>
+            <div class="comment-body">
+              <div class="comment-header">
+                <span class="comment-name">Jamie Foster</span>
+                <span class="comment-time">1 year ago</span>
+              </div>
+              <div class="comment-text">Great to see you on here Martin! Looking forward to the behind-the-scenes content. Subscribed!</div>
+              <div class="comment-actions">
+                <span class="comment-action" onclick="this.querySelector('i').classList.toggle('bi-heart-fill'); this.querySelector('i').classList.toggle('bi-heart');"><i class="bi bi-heart"></i> Reply</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <aside class="explore-sidebar">
+        <div class="sidebar-title">Explore Creators</div>
+
+        <div class="rec-card">
+          <div class="rec-banner b1">
+            <span class="rec-free-badge">FREE</span>
+          </div>
+          <div class="rec-avatar a1">JJ</div>
+          <div class="rec-info">
+            <div class="rec-name">Justice Jimmy</div>
+            <div class="rec-handle">@JusticeJimmy</div>
+            <div class="rec-stats">
+              <span class="rec-stat"><i class="bi bi-image"></i> 24</span>
+              <span class="rec-stat"><i class="bi bi-heart"></i> 156</span>
+              <span class="rec-stat"><i class="bi bi-people"></i> 89</span>
+              <span class="rec-stat"><i class="bi bi-eye"></i> 1.2k</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rec-card">
+          <div class="rec-banner b2"></div>
+          <div class="rec-avatar a2">SK</div>
+          <div class="rec-info">
+            <div class="rec-name">Sarah Knight</div>
+            <div class="rec-handle">@SarahKnight</div>
+            <div class="rec-stats">
+              <span class="rec-stat"><i class="bi bi-image"></i> 42</span>
+              <span class="rec-stat"><i class="bi bi-heart"></i> 310</span>
+              <span class="rec-stat"><i class="bi bi-people"></i> 175</span>
+              <span class="rec-stat"><i class="bi bi-eye"></i> 3.4k</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="rec-card">
+          <div class="rec-banner b3">
+            <span class="rec-free-badge">FREE</span>
+          </div>
+          <div class="rec-avatar a3">TM</div>
+          <div class="rec-info">
+            <div class="rec-name">Tyson Marks</div>
+            <div class="rec-handle">@TysonMarks</div>
+            <div class="rec-stats">
+              <span class="rec-stat"><i class="bi bi-image"></i> 18</span>
+              <span class="rec-stat"><i class="bi bi-heart"></i> 92</span>
+              <span class="rec-stat"><i class="bi bi-people"></i> 54</span>
+              <span class="rec-stat"><i class="bi bi-eye"></i> 870</span>
+            </div>
+          </div>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="public-shell-footer">
+    <div class="container">
+      <div class="footer-topline"></div>
+      <div class="footer-grid" style="gap: 2rem;">
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">For Creators</h3>
+          <a href="signup.html" style="font-size: .9rem;">Getting Started</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Personal Video Messages</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Revenue Streams</h3>
+          <a href="for-creators.html" style="font-size: .9rem;">Content Monetization</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Paid Phone Calls</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Text Coaching</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Video Consultations</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Support</h3>
+          <a href="contact.html" style="font-size: .9rem;">Help Center</a>
+          <a href="contact.html" style="font-size: .9rem;">Contact Us</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Creator Resources</a>
+          <a href="contact.html" style="font-size: .9rem;">Community</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Advanced</h3>
+          <a href="business.html#token" style="font-size: .9rem;">Token Ecosystem</a>
+          <a href="business.html#presale" style="font-size: .9rem;">Presale Info</a>
+        </div>
+      </div>
+      <div class="footer-bottomline"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding: .75rem 0;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">&copy; 2026 FansFollow.me. All rights reserved.</span>
+          <span style="font-size: .85rem; color: #94a3b8;"><span style="color: #f97316; font-weight: 800;">&#8383;</span> <strong style="color: #fff;">BTC/ETH/USDT/SOL Accepted</strong></span>
+          <a href="privacy.html" style="font-size: .85rem; color: #94a3b8;">Privacy Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="terms.html" style="font-size: .85rem; color: #94a3b8;">Terms of Service</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="cookies.html" style="font-size: .85rem; color: #94a3b8;">Cookie Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="faq.html" style="font-size: .85rem; color: #94a3b8;">FAQ</a>
+        </div>
+        <div style="display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">Follow us:</span>
+          <div class="footer-social" style="display: flex; gap: .5rem;" aria-label="Social links">
+            <a href="https://www.facebook.com/profile.php?id=100089966703593" target="_blank" rel="noopener" aria-label="Facebook" style="color: #94a3b8;"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/fansfollowdotme" target="_blank" rel="noopener" aria-label="Instagram" style="color: #94a3b8;"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@FFMFansFollowME" target="_blank" rel="noopener" aria-label="YouTube" style="color: #94a3b8;"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@fansfollow.me" target="_blank" rel="noopener" aria-label="TikTok" style="color: #94a3b8;"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var bar = document.querySelector('.public-shell-topbar');
+      if (!bar) return;
+      function onScroll() { bar.classList.toggle('scrolled', window.scrollY > 20); }
+      window.addEventListener('scroll', onScroll, {passive: true});
+      onScroll();
+    })();
+  </script>
+</body>
+</html>

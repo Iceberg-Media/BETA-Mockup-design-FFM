@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="FansFollow.me - Create a Story with Text">
+  <meta name="theme-color" content="#f97316">
+  <title>Story with Text - FansFollow.me</title>
+  <link href="https://fansfollow.me/img/favicon.png" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f1a;
+      --panel: #151b2c;
+      --panel-2: #1a2238;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --shadow: 0 18px 54px rgba(0, 0, 0, 0.36);
+      --cta-gradient: linear-gradient(135deg, #f97316 0%, #ec4899 48%, #a855f7 100%);
+      --cta-gradient-2: linear-gradient(135deg, #f97316 0%, #9333ea 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background-color: var(--bg); background-image: none; color: var(--text); font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 400; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; color: var(--text); }
+
+    .public-shell-topbar { position: sticky; top: 0; z-index: 40; background: transparent; border-bottom: 1px solid transparent; box-shadow: none; transition: background .3s, border-color .3s, box-shadow .3s; }
+    .public-shell-topbar.scrolled { background: rgba(11,15,26,0.82); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.06); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .public-shell-topbar .inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .public-shell-brand img { height: 30px; width: auto; }
+    .public-shell-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0.15rem; }
+    .public-shell-nav a, .public-shell-nav summary { padding: 0.5rem 0.7rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; color: #cbd5e1; cursor: pointer; list-style: none; transition: background-color .16s ease, color .16s ease, transform .16s ease; }
+    .public-shell-nav a:hover, .public-shell-nav a.active, .public-shell-nav summary:hover, .public-shell-nav details[open] > summary { color: #fb923c; background: none; transform: translateY(-1px); }
+    .public-shell-nav details { position: relative; }
+    .public-shell-nav details > summary::-webkit-details-marker { display: none; }
+    .public-shell-nav summary::after { content: '\25BE'; display: inline-block; margin-left: .35rem; font-size: .82em; line-height: 1; opacity: .8; transform: translateY(-1px); }
+    .public-shell-nav details[open] > summary::after { transform: translateY(-1px) rotate(180deg); }
+    .public-shell-nav-panel { position: absolute; top: calc(100% + .55rem); left: 0; min-width: 220px; padding: .45rem; background: #151b2c; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; box-shadow: var(--shadow); display: grid; gap: .15rem; z-index: 5; }
+    .public-shell-nav-panel a { padding: .7rem .8rem; border-radius: 12px; font-weight: 600; color: #e5e7eb; display: flex; align-items: center; gap: .6rem; }
+    .public-shell-nav-panel a:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .public-shell-actions { display: flex; gap: .6rem; align-items: center; position: relative; }
+    .public-shell-button { border-radius: 12px; font-weight: 700; min-height: 42px; padding: 0.65rem 1.1rem; letter-spacing: -0.01em; border-width: 1px; font-size: .9rem; }
+    .public-shell-button.btn-primary { background: var(--cta-gradient); background-image: var(--cta-gradient); color: #fff; border-color: transparent; box-shadow: 0 10px 20px rgba(249, 115, 22, .3); }
+    .public-shell-button.btn-primary:hover, .public-shell-button.btn-primary:focus { background: linear-gradient(135deg, #f97316 0%, #a855f7 100%); background-image: linear-gradient(135deg, #f97316 0%, #a855f7 100%); color: #fff; }
+    .account-trigger { display: flex; align-items: center; gap: .5rem; cursor: pointer; padding: .35rem .6rem .35rem .35rem; border-radius: 999px; background: rgba(30,41,59,.6); border: 1px solid var(--line); transition: border-color .18s; }
+    .account-trigger:hover { border-color: rgba(255,255,255,.15); }
+    .account-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--cta-gradient-2); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .8rem; flex-shrink: 0; }
+    .account-name { font-size: .85rem; font-weight: 600; color: #e5e7eb; }
+    .account-chevron { font-size: .75rem; color: #94a3b8; }
+    .account-menu { position: absolute; top: calc(100% + .55rem); right: 0; min-width: 240px; padding: .5rem; background: #151b2c; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; box-shadow: var(--shadow); display: none; z-index: 50; }
+    .account-menu.is-open { display: block; }
+    .account-menu a { display: flex; align-items: center; gap: .6rem; padding: .55rem .7rem; border-radius: 10px; color: #94a3b8; font-weight: 600; font-size: .85rem; transition: background .16s, color .16s; }
+    .account-menu a:hover { background: rgba(255,255,255,.06); color: #e5e7eb; }
+    .account-menu a i { font-size: 1rem; width: 1.2rem; text-align: center; color: #64748b; }
+    .account-menu a:hover i { color: #fb923c; }
+    .account-menu .menu-divider { height: 1px; background: var(--line); margin: .35rem .5rem; }
+    .account-menu .menu-balance { padding: .55rem .7rem; border-radius: 10px; margin-bottom: .25rem; background: rgba(249,115,22,.06); border: 1px solid rgba(249,115,22,.12); }
+    .account-menu .menu-balance .bal-label { font-size: .7rem; color: #94a3b8; font-weight: 600; }
+    .account-menu .menu-balance .bal-value { font-size: 1.1rem; color: #fb923c; font-weight: 800; }
+    .public-shell-hamburger { display: none; background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+    .mobile-menu-overlay { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+    .mobile-menu-overlay.is-open { display: block; }
+    .mobile-menu-panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(85vw, 360px); z-index: 101; background: linear-gradient(180deg, #151b2c 0%, #0f172a 100%); border-left: 1px solid rgba(255,255,255,.08); transform: translateX(100%); transition: transform .3s ease; overflow-y: auto; display: flex; flex-direction: column; padding: 1.5rem; }
+    .mobile-menu-panel.is-open { transform: translateX(0); }
+    .mobile-menu-close { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+    .mobile-menu-close button { background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+    .mobile-menu-section-label { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #64748b; padding: .6rem 0; }
+    .mobile-menu-panel a { display: block; padding: .75rem 0; color: #e5e7eb; text-decoration: none; font-size: 1.05rem; font-weight: 600; transition: color .2s; }
+    .mobile-menu-panel a:hover { color: #fb923c; }
+    @media (max-width: 991.98px) {
+      .public-shell-hamburger { display: flex; }
+      .public-shell-topbar .inner { min-height: auto; flex-wrap: wrap; padding: .85rem 0; }
+      .public-shell-brand { flex: 1 1 auto; }
+      .public-shell-brand img { height: 26px; }
+      .account-name, .account-chevron { display: none !important; }
+    }
+
+    .container { max-width: 1280px !important; padding-left: 1rem; padding-right: 1rem; }
+    @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; } }
+
+    .page-header { text-align: center; padding: 2.5rem 1rem 1.5rem; }
+    .page-header h1 { margin: 0; font-size: 1.75rem; font-weight: 800; color: #fff; }
+    .page-header p { margin: .5rem 0 0; font-size: .9rem; color: var(--muted); }
+
+    .cst-wrap { max-width: 900px; margin: 0 auto; padding: 0 1rem 3rem; }
+    .cst-grid { display: grid; grid-template-columns: 40% 1fr; gap: 2rem; align-items: start; }
+    @media (max-width: 767.98px) { .cst-grid { grid-template-columns: 1fr; gap: 1.5rem; } }
+
+    .cst-left { display: flex; flex-direction: column; gap: 1.25rem; }
+
+    .text-input-wrap { position: relative; }
+    .text-input { width: 100%; min-height: 48px; padding: .75rem 2.75rem .75rem 1rem; background: var(--panel); border: 1px solid var(--line); border-radius: 12px; color: #fff; font-family: inherit; font-size: .95rem; outline: none; transition: border-color .2s; resize: vertical; }
+    .text-input::placeholder { color: #64748b; }
+    .text-input:focus { border-color: #f97316; }
+    .emoji-trigger { position: absolute; right: .75rem; bottom: .6rem; background: none; border: none; color: #94a3b8; font-size: 1.2rem; cursor: pointer; padding: .15rem; border-radius: 8px; transition: color .18s; z-index: 2; }
+    .emoji-trigger:hover { color: #fb923c; }
+
+    .emoji-picker { position: absolute; bottom: calc(100% + .5rem); right: 0; width: 280px; max-height: 240px; overflow-y: auto; background: #0d1117; border: 1px solid var(--line); border-radius: 14px; box-shadow: var(--shadow); padding: .75rem; display: none; z-index: 10; }
+    .emoji-picker.is-open { display: block; }
+    .emoji-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: .25rem; }
+    .emoji-item { font-size: 1.3rem; cursor: pointer; padding: .25rem; border-radius: 8px; text-align: center; transition: background .15s; }
+    .emoji-item:hover { background: rgba(255,255,255,.08); }
+
+    .section-label { font-size: .85rem; font-weight: 700; color: #e5e7eb; margin-bottom: .6rem; }
+
+    .bg-swatches { display: grid; grid-template-columns: repeat(7, 1fr); gap: .5rem; }
+    .bg-swatch { width: 100%; aspect-ratio: 1; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color .18s, transform .18s; }
+    .bg-swatch:hover { transform: scale(1.08); }
+    .bg-swatch.active { border-color: #f97316; box-shadow: 0 0 0 2px rgba(249,115,22,.3); }
+    .bg-swatch.s1 { background: linear-gradient(135deg, #a855f7, #ec4899); }
+    .bg-swatch.s2 { background: linear-gradient(135deg, #22c55e, #16a34a); }
+    .bg-swatch.s3 { background: linear-gradient(135deg, #3b82f6 50%, #f97316 50%); }
+    .bg-swatch.s4 { background: radial-gradient(circle, #ef4444, #7f1d1d); }
+    .bg-swatch.s5 { background: radial-gradient(circle at 30% 30%, #14b8a6, #0d9488, #115e59); }
+    .bg-swatch.s6 { background: linear-gradient(135deg, #3b82f6 50%, #ec4899 50%); }
+    .bg-swatch.s7 { background: linear-gradient(135deg, #eab308, #f59e0b); }
+    .bg-swatch.s8 { background: linear-gradient(135deg, #f97316, #c2410c); }
+    .bg-swatch.s9 { background: linear-gradient(135deg, #3b82f6, #22c55e); }
+    .bg-swatch.s10 { background: linear-gradient(135deg, #14b8a6, #0d9488); }
+    .bg-swatch.s11 { background: linear-gradient(135deg, #ec4899, #be185d); }
+    .bg-swatch.s12 { background: linear-gradient(135deg, #c2410c, #7c2d12, #451a03); }
+    .bg-swatch.s13 { background: linear-gradient(135deg, #1e1b4b, #0f0a1e, #000); }
+    .bg-swatch.s14 { background: linear-gradient(135deg, #3b82f6, #1e40af, #1e3a8a); }
+    .bg-swatch.s15 { background: linear-gradient(135deg, #6b7280, #4b5563, #374151); }
+    .bg-swatch.s16 { background: #1e293b; display: flex; align-items: center; justify-content: center; }
+    .bg-swatch.s16 i { font-size: .7rem; color: #64748b; }
+
+    .color-swatches { display: flex; gap: .6rem; }
+    .color-swatch { width: 36px; height: 36px; border-radius: 50%; cursor: pointer; border: 2px solid transparent; transition: border-color .18s, transform .18s; }
+    .color-swatch:hover { transform: scale(1.08); }
+    .color-swatch.active { border-color: #f97316; box-shadow: 0 0 0 2px rgba(249,115,22,.3); }
+    .color-swatch.white { background: #fff; }
+    .color-swatch.black { background: #1a1a1a; border-color: #334155; }
+
+    .validation-msg { display: none; align-items: center; gap: .5rem; padding: .75rem 1rem; background: rgba(127,29,29,.25); border: 1px solid rgba(239,68,68,.3); border-radius: 12px; color: #fca5a5; font-size: .85rem; font-weight: 600; }
+    .validation-msg.show { display: flex; }
+    .validation-msg i { font-size: 1rem; color: #ef4444; }
+
+    .create-btn { width: 100%; padding: .85rem; border-radius: 12px; background: var(--cta-gradient-2); color: #fff; font-weight: 700; font-size: .95rem; border: none; cursor: pointer; transition: filter .18s; box-shadow: 0 10px 24px rgba(249,115,22,.25); }
+    .create-btn:hover { filter: brightness(1.12); }
+
+    .preview-card { width: 100%; max-width: 320px; margin: 0 auto; aspect-ratio: 9 / 16; border-radius: 18px; overflow: hidden; position: relative; box-shadow: var(--shadow); display: flex; align-items: center; justify-content: center; padding: 1.5rem; transition: background .3s ease; }
+    .preview-bg { position: absolute; inset: 0; z-index: 0; }
+    .preview-text { position: relative; z-index: 1; font-size: 1.3rem; font-weight: 700; text-align: center; line-height: 1.4; word-break: break-word; max-width: 100%; }
+    @media (max-width: 767.98px) { .preview-card { max-width: 260px; } }
+
+    .public-shell-footer { padding: 1.5rem 0 1.2rem; color: var(--muted); background: linear-gradient(135deg, #111827, #1f2937, #111827); border-top: 1px solid #1f293b; }
+    .public-shell-footer .footer-topline, .public-shell-footer .footer-bottomline { height: 3px; width: 100%; border-radius: 999px; background: linear-gradient(90deg, rgba(249,115,22,0) 0%, rgba(249,115,22,.85) 18%, rgba(168,85,247,.95) 50%, rgba(236,72,153,.85) 82%, rgba(236,72,153,0) 100%); opacity: .95; }
+    .public-shell-footer .footer-topline { margin-bottom: 1rem; }
+    .public-shell-footer .footer-bottomline { margin-top: 1.5rem; margin-bottom: .75rem; }
+    .public-shell-footer .footer-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+    .public-shell-footer h3 { margin: 0 0 .75rem; font-size: .875rem; font-weight: 700; color: #fff; position: relative; padding-bottom: .75rem; }
+    .public-shell-footer h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 32px; height: 2px; border-radius: 999px; background: var(--cta-gradient); }
+    .public-shell-footer .footer-links a { display: block; padding: .15rem 0; color: #9ca3af; font-size: .75rem; line-height: 1.4; }
+    .public-shell-footer .footer-links a:hover { color: #fff; }
+    .public-shell-footer .footer-social { display: inline-flex; gap: .5rem; }
+    .public-shell-footer .footer-social a { width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: #1f2937; color: #9ca3af; border: 1px solid rgba(255,255,255,.08); }
+    .public-shell-footer .footer-social a:hover { background: rgba(249,115,22,.16); border-color: rgba(249,115,22,.24); color: #fff; }
+    @media (max-width: 991.98px) {
+      .public-shell-footer { padding: 2rem 0 1.5rem; }
+      .public-shell-footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="public-shell-topbar">
+    <div class="container inner">
+      <a class="public-shell-brand" href="index.html" aria-label="FansFollow.me">
+        <img src="https://fansfollow.me/public/img/logo_2-1718299542.png" alt="FansFollow.me" width="120" height="30">
+      </a>
+      <nav class="public-shell-nav d-none d-lg-flex" aria-label="Primary">
+        <a href="for-creators.html">For Creators</a>
+        <a href="fans.html">For Fans</a>
+        <a href="celebrities.html">Celebrities</a>
+        <a href="explore.html">Explore</a>
+        <details class="public-shell-more">
+          <summary>More</summary>
+          <div class="public-shell-nav-panel">
+            <a href="casting.html"><i class="bi bi-film"></i> Movie Casting</a>
+            <a href="live-streams.html"><i class="bi bi-broadcast"></i> Live Streams</a>
+            <a href="business.html"><i class="bi bi-briefcase"></i> Business</a>
+            <a href="contact.html"><i class="bi bi-chat-dots"></i> Support</a>
+          </div>
+        </details>
+      </nav>
+      <div class="public-shell-actions">
+        <a class="btn btn-primary public-shell-button" href="settings.html"><i class="bi bi-pencil" style="margin-right:.35rem;"></i>Edit my page</a>
+        <div class="account-trigger" onclick="document.getElementById('accountMenu').classList.toggle('is-open')">
+          <div class="account-avatar">FF</div>
+          <span class="account-name d-none d-lg-inline">Creator</span>
+          <i class="bi bi-chevron-down account-chevron d-none d-lg-inline"></i>
+        </div>
+        <div class="account-menu" id="accountMenu">
+          <div class="menu-balance"><div class="bal-label">Balance</div><div class="bal-value">&pound;0.00</div></div>
+          <a href="wallet.html"><i class="bi bi-wallet2"></i> Wallet</a>
+          <a href="my-page.html"><i class="bi bi-person"></i> My page</a>
+          <a href="creator-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+          <a href="#"><i class="bi bi-file-earmark-plus"></i> My Posts</a>
+          <a href="#"><i class="bi bi-safe"></i> Vault</a>
+          <div class="menu-divider"></div>
+          <a href="#"><i class="bi bi-people"></i> My subscribers</a>
+          <a href="subscriptions.html"><i class="bi bi-person-check"></i> My subscriptions</a>
+          <a href="bookmarks.html"><i class="bi bi-bookmark"></i> Bookmarks</a>
+          <a href="my-likes.html"><i class="bi bi-heart"></i> Likes</a>
+          <div class="menu-divider"></div>
+          <a href="#"><i class="bi bi-moon-stars"></i> Dark mode</a>
+          <a href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+      </div>
+      <button class="public-shell-hamburger" onclick="document.querySelector('.mobile-menu-overlay').classList.add('is-open');document.querySelector('.mobile-menu-panel').classList.add('is-open')" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu-overlay" onclick="this.classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')"></div>
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-close">
+      <button onclick="document.querySelector('.mobile-menu-overlay').classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-section-label">Navigation</div>
+    <a href="for-creators.html">For Creators</a>
+    <a href="fans.html">For Fans</a>
+    <a href="celebrities.html">Celebrities</a>
+    <a href="explore.html">Explore</a>
+    <div class="mobile-menu-section-label" style="margin-top:.5rem">More</div>
+    <a href="casting.html">Movie Casting</a>
+    <a href="live-streams.html">Live Streams</a>
+    <a href="business.html">Business</a>
+    <a href="contact.html">Support</a>
+    <div class="mobile-menu-section-label" style="margin-top:.5rem">Account</div>
+    <a href="creator-dashboard.html">Dashboard</a>
+    <a href="settings.html">Edit my page</a>
+    <a href="wallet.html">Wallet</a>
+    <a href="index.html">Log out</a>
+  </div>
+
+  <main>
+    <div class="page-header">
+      <h1>Story with text</h1>
+      <p>Create an story with only text</p>
+    </div>
+
+    <div class="cst-wrap">
+      <div class="cst-grid">
+        <div class="cst-left">
+          <div class="text-input-wrap">
+            <textarea class="text-input" id="storyText" placeholder="Start typing" rows="2"></textarea>
+            <button class="emoji-trigger" onclick="document.getElementById('emojiPicker').classList.toggle('is-open');event.stopPropagation();" aria-label="Emoji picker"><i class="bi bi-emoji-smile"></i></button>
+            <div class="emoji-picker" id="emojiPicker">
+              <div class="emoji-grid">
+                <span class="emoji-item">&#128512;</span><span class="emoji-item">&#128513;</span><span class="emoji-item">&#128514;</span><span class="emoji-item">&#128515;</span><span class="emoji-item">&#128516;</span><span class="emoji-item">&#128517;</span>
+                <span class="emoji-item">&#128518;</span><span class="emoji-item">&#128519;</span><span class="emoji-item">&#128520;</span><span class="emoji-item">&#128521;</span><span class="emoji-item">&#128522;</span><span class="emoji-item">&#128523;</span>
+                <span class="emoji-item">&#128524;</span><span class="emoji-item">&#128525;</span><span class="emoji-item">&#128526;</span><span class="emoji-item">&#128527;</span><span class="emoji-item">&#128528;</span><span class="emoji-item">&#128529;</span>
+                <span class="emoji-item">&#128530;</span><span class="emoji-item">&#128531;</span><span class="emoji-item">&#128532;</span><span class="emoji-item">&#128533;</span><span class="emoji-item">&#128534;</span><span class="emoji-item">&#128535;</span>
+                <span class="emoji-item">&#128536;</span><span class="emoji-item">&#128537;</span><span class="emoji-item">&#128538;</span><span class="emoji-item">&#128539;</span><span class="emoji-item">&#128540;</span><span class="emoji-item">&#128541;</span>
+                <span class="emoji-item">&#128542;</span><span class="emoji-item">&#128543;</span><span class="emoji-item">&#128544;</span><span class="emoji-item">&#128545;</span><span class="emoji-item">&#128546;</span><span class="emoji-item">&#128547;</span>
+                <span class="emoji-item">&#10084;&#65039;</span><span class="emoji-item">&#128293;</span><span class="emoji-item">&#128175;</span><span class="emoji-item">&#128077;</span><span class="emoji-item">&#128078;</span><span class="emoji-item">&#128079;</span>
+                <span class="emoji-item">&#127881;</span><span class="emoji-item">&#127882;</span><span class="emoji-item">&#127873;</span><span class="emoji-item">&#127883;</span><span class="emoji-item">&#9889;</span><span class="emoji-item">&#11088;</span>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-label">Background images</div>
+            <div class="bg-swatches">
+              <div class="bg-swatch s1 active" onclick="selectBg(this, 'linear-gradient(135deg, #a855f7, #ec4899)')" title="Purple/Pink"></div>
+              <div class="bg-swatch s2" onclick="selectBg(this, 'linear-gradient(135deg, #22c55e, #16a34a)')" title="Green"></div>
+              <div class="bg-swatch s3" onclick="selectBg(this, 'linear-gradient(135deg, #3b82f6 50%, #f97316 50%)')" title="Blue/Orange"></div>
+              <div class="bg-swatch s4" onclick="selectBg(this, 'radial-gradient(circle, #ef4444, #7f1d1d)')" title="Red"></div>
+              <div class="bg-swatch s5" onclick="selectBg(this, 'radial-gradient(circle at 30% 30%, #14b8a6, #0d9488, #115e59)')" title="Teal"></div>
+              <div class="bg-swatch s6" onclick="selectBg(this, 'linear-gradient(135deg, #3b82f6 50%, #ec4899 50%)')" title="Blue/Pink"></div>
+              <div class="bg-swatch s7" onclick="selectBg(this, 'linear-gradient(135deg, #eab308, #f59e0b)')" title="Yellow"></div>
+              <div class="bg-swatch s8" onclick="selectBg(this, 'linear-gradient(135deg, #f97316, #c2410c)')" title="Orange"></div>
+              <div class="bg-swatch s9" onclick="selectBg(this, 'linear-gradient(135deg, #3b82f6, #22c55e)')" title="Blue/Green"></div>
+              <div class="bg-swatch s10" onclick="selectBg(this, 'linear-gradient(135deg, #14b8a6, #0d9488)')" title="Teal Solid"></div>
+              <div class="bg-swatch s11" onclick="selectBg(this, 'linear-gradient(135deg, #ec4899, #be185d)')" title="Magenta"></div>
+              <div class="bg-swatch s12" onclick="selectBg(this, 'linear-gradient(135deg, #c2410c, #7c2d12, #451a03)')" title="Orange/Brown"></div>
+              <div class="bg-swatch s13" onclick="selectBg(this, 'linear-gradient(135deg, #1e1b4b, #0f0a1e, #000)')" title="Dark Purple"></div>
+              <div class="bg-swatch s14" onclick="selectBg(this, 'linear-gradient(135deg, #3b82f6, #1e40af, #1e3a8a)')" title="Blue Marble"></div>
+              <div class="bg-swatch s15" onclick="selectBg(this, 'linear-gradient(135deg, #6b7280, #4b5563, #374151)')" title="Gray Static"></div>
+              <div class="bg-swatch s16" onclick="selectBg(this, '#1e293b')" title="Image"><i class="bi bi-image"></i></div>
+            </div>
+          </div>
+
+          <div>
+            <div class="section-label">Font color</div>
+            <div class="color-swatches">
+              <div class="color-swatch white active" onclick="selectColor(this, '#ffffff')" title="White"></div>
+              <div class="color-swatch black" onclick="selectColor(this, '#1a1a1a')" title="Black"></div>
+            </div>
+          </div>
+
+          <div class="validation-msg" id="validationMsg">
+            <i class="bi bi-x-circle"></i>
+            <span>Please write something</span>
+          </div>
+
+          <button class="create-btn" onclick="submitStory()">Create</button>
+        </div>
+
+        <div class="cst-right">
+          <div class="preview-card" id="previewCard">
+            <div class="preview-bg" id="previewBg" style="background: linear-gradient(135deg, #a855f7, #ec4899);"></div>
+            <div class="preview-text" id="previewText" style="color: #ffffff;">Start typing</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="public-shell-footer">
+    <div class="container">
+      <div class="footer-topline"></div>
+      <div class="footer-grid" style="gap: 2rem;">
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">For Creators</h3>
+          <a href="signup.html" style="font-size: .9rem;">Getting Started</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Personal Video Messages</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Revenue Streams</h3>
+          <a href="for-creators.html" style="font-size: .9rem;">Content Monetization</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Paid Phone Calls</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Text Coaching</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Video Consultations</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Support</h3>
+          <a href="contact.html" style="font-size: .9rem;">Help Center</a>
+          <a href="contact.html" style="font-size: .9rem;">Contact Us</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Creator Resources</a>
+          <a href="contact.html" style="font-size: .9rem;">Community</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Advanced</h3>
+          <a href="business.html#token" style="font-size: .9rem;">Token Ecosystem</a>
+          <a href="business.html#presale" style="font-size: .9rem;">Presale Info</a>
+        </div>
+      </div>
+      <div class="footer-bottomline"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding: .75rem 0;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">&copy; 2026 FansFollow.me. All rights reserved.</span>
+          <span style="font-size: .85rem; color: #94a3b8;"><span style="color: #f97316; font-weight: 800;">&#8383;</span> <strong style="color: #fff;">BTC/ETH/USDT/SOL Accepted</strong></span>
+          <a href="privacy.html" style="font-size: .85rem; color: #94a3b8;">Privacy Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="terms.html" style="font-size: .85rem; color: #94a3b8;">Terms of Service</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="cookies.html" style="font-size: .85rem; color: #94a3b8;">Cookie Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="faq.html" style="font-size: .85rem; color: #94a3b8;">FAQ</a>
+        </div>
+        <div style="display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">Follow us:</span>
+          <div class="footer-social" style="display: flex; gap: .5rem;" aria-label="Social links">
+            <a href="https://www.facebook.com/profile.php?id=100089966703593" target="_blank" rel="noopener" aria-label="Facebook" style="color: #94a3b8;"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/fansfollowdotme" target="_blank" rel="noopener" aria-label="Instagram" style="color: #94a3b8;"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@FFMFansFollowME" target="_blank" rel="noopener" aria-label="YouTube" style="color: #94a3b8;"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@fansfollow.me" target="_blank" rel="noopener" aria-label="TikTok" style="color: #94a3b8;"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    (function() {
+      var bar = document.querySelector('.public-shell-topbar');
+      if (!bar) return;
+      function onScroll() { bar.classList.toggle('scrolled', window.scrollY > 20); }
+      window.addEventListener('scroll', onScroll, {passive: true});
+      onScroll();
+    })();
+
+    document.addEventListener('click', function(e) {
+      var menu = document.getElementById('accountMenu');
+      var trigger = document.querySelector('.account-trigger');
+      if (menu && !menu.contains(e.target) && trigger && !trigger.contains(e.target)) menu.classList.remove('is-open');
+
+      var picker = document.getElementById('emojiPicker');
+      var emojiBtn = document.querySelector('.emoji-trigger');
+      if (picker && !picker.contains(e.target) && emojiBtn && !emojiBtn.contains(e.target)) picker.classList.remove('is-open');
+    });
+
+    var textInput = document.getElementById('storyText');
+    var previewText = document.getElementById('previewText');
+
+    textInput.addEventListener('input', function() {
+      var val = this.value.trim();
+      previewText.textContent = val || 'Start typing';
+      document.getElementById('validationMsg').classList.remove('show');
+    });
+
+    document.querySelectorAll('.emoji-item').forEach(function(el) {
+      el.addEventListener('click', function() {
+        textInput.value += this.textContent;
+        textInput.dispatchEvent(new Event('input'));
+        document.getElementById('emojiPicker').classList.remove('is-open');
+      });
+    });
+
+    function selectBg(el, bg) {
+      document.querySelectorAll('.bg-swatch').forEach(function(s) { s.classList.remove('active'); });
+      el.classList.add('active');
+      document.getElementById('previewBg').style.background = bg;
+    }
+
+    function selectColor(el, color) {
+      document.querySelectorAll('.color-swatch').forEach(function(s) { s.classList.remove('active'); });
+      el.classList.add('active');
+      previewText.style.color = color;
+    }
+
+    function submitStory() {
+      var val = textInput.value.trim();
+      if (!val) {
+        document.getElementById('validationMsg').classList.add('show');
+        return;
+      }
+      alert('This is a design preview — creating a story is not functional here.');
+    }
+  </script>
+</body>
+</html>

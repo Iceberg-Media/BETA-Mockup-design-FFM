@@ -1,0 +1,599 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="FFM-Martin - Creator Profile on FansFollow.me">
+  <meta name="theme-color" content="#f97316">
+  <title>FFM-Martin - FansFollow.me</title>
+  <link href="https://fansfollow.me/img/favicon.png" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0b0f1a;
+      --panel: #151b2c;
+      --panel-2: #1a2238;
+      --text: #e5e7eb;
+      --muted: #94a3b8;
+      --line: rgba(255, 255, 255, 0.08);
+      --shadow: 0 18px 54px rgba(0, 0, 0, 0.36);
+      --cta-gradient: linear-gradient(135deg, #f97316 0%, #ec4899 48%, #a855f7 100%);
+      --cta-gradient-2: linear-gradient(135deg, #f97316 0%, #9333ea 100%);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { margin: 0; background-color: var(--bg); color: var(--text); font-family: 'Inter', system-ui, sans-serif; font-weight: 400; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+    h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; color: var(--text); }
+
+    .public-shell-topbar { position: sticky; top: 0; z-index: 40; background: transparent; border-bottom: 1px solid transparent; transition: background .3s, border-color .3s, box-shadow .3s; }
+    .public-shell-topbar.scrolled { background: rgba(11,15,26,0.82); backdrop-filter: blur(18px); border-bottom: 1px solid rgba(255,255,255,.06); box-shadow: 0 4px 16px rgba(0,0,0,.15); }
+    .public-shell-topbar .inner { min-height: 72px; display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .public-shell-brand img { height: 30px; width: auto; }
+    .public-shell-nav { display: flex; align-items: center; flex-wrap: wrap; gap: 0.15rem; }
+    .public-shell-nav a, .public-shell-nav summary { padding: 0.5rem 0.7rem; border-radius: 10px; font-weight: 700; font-size: 0.9rem; color: #cbd5e1; cursor: pointer; list-style: none; transition: color .16s, transform .16s; }
+    .public-shell-nav a:hover, .public-shell-nav a.active, .public-shell-nav summary:hover, .public-shell-nav details[open] > summary { color: #fb923c; transform: translateY(-1px); }
+    .public-shell-nav details { position: relative; }
+    .public-shell-nav details > summary::-webkit-details-marker { display: none; }
+    .public-shell-nav summary::after { content: '\25BE'; margin-left: .35rem; font-size: .82em; opacity: .8; }
+    .public-shell-nav details[open] > summary::after { transform: rotate(180deg); }
+    .public-shell-nav-panel { position: absolute; top: calc(100% + .55rem); left: 0; min-width: 220px; padding: .45rem; background: #151b2c; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; box-shadow: var(--shadow); display: grid; gap: .15rem; z-index: 5; }
+    .public-shell-nav-panel a { padding: .7rem .8rem; border-radius: 12px; font-weight: 600; color: #e5e7eb; display: flex; align-items: center; gap: .6rem; }
+    .public-shell-nav-panel a:hover { background: rgba(255,255,255,.08); color: #fff; }
+    .public-shell-actions { display: flex; gap: .6rem; align-items: center; position: relative; }
+    .public-shell-button { border-radius: 12px; font-weight: 700; min-height: 42px; padding: 0.65rem 1.1rem; letter-spacing: -0.01em; border-width: 1px; font-size: .9rem; }
+    .public-shell-button.btn-primary { background: var(--cta-gradient); color: #fff; border-color: transparent; box-shadow: 0 10px 20px rgba(249,115,22,.3); }
+    .public-shell-button.btn-primary:hover, .public-shell-button.btn-primary:focus { background: linear-gradient(135deg, #f97316 0%, #a855f7 100%); color: #fff; }
+    .account-trigger { display: flex; align-items: center; gap: .5rem; cursor: pointer; padding: .35rem .6rem .35rem .35rem; border-radius: 999px; background: rgba(30,41,59,.6); border: 1px solid var(--line); transition: border-color .18s; }
+    .account-trigger:hover { border-color: rgba(255,255,255,.15); }
+    .account-avatar { width: 32px; height: 32px; border-radius: 50%; background: var(--cta-gradient-2); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .8rem; flex-shrink: 0; }
+    .account-name { font-size: .85rem; font-weight: 600; color: #e5e7eb; }
+    .account-chevron { font-size: .75rem; color: #94a3b8; }
+    .account-menu { position: absolute; top: calc(100% + .55rem); right: 0; min-width: 240px; padding: .5rem; background: #151b2c; border: 1px solid rgba(255,255,255,.08); border-radius: 16px; box-shadow: var(--shadow); display: none; z-index: 50; }
+    .account-menu.is-open { display: block; }
+    .account-menu a { display: flex; align-items: center; gap: .6rem; padding: .55rem .7rem; border-radius: 10px; color: #94a3b8; font-weight: 600; font-size: .85rem; transition: background .16s, color .16s; }
+    .account-menu a:hover { background: rgba(255,255,255,.06); color: #e5e7eb; }
+    .account-menu a i { font-size: 1rem; width: 1.2rem; text-align: center; color: #64748b; }
+    .account-menu a:hover i { color: #fb923c; }
+    .account-menu .menu-divider { height: 1px; background: var(--line); margin: .35rem .5rem; }
+    .account-menu .menu-balance { padding: .55rem .7rem; border-radius: 10px; margin-bottom: .25rem; background: rgba(249,115,22,.06); border: 1px solid rgba(249,115,22,.12); }
+    .account-menu .menu-balance .bal-label { font-size: .7rem; color: #94a3b8; font-weight: 600; }
+    .account-menu .menu-balance .bal-value { font-size: 1.1rem; color: #fb923c; font-weight: 800; }
+    .public-shell-hamburger { display: none; background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; align-items: center; justify-content: center; }
+    .mobile-menu-overlay { display: none; position: fixed; inset: 0; z-index: 100; background: rgba(0,0,0,.6); backdrop-filter: blur(4px); }
+    .mobile-menu-overlay.is-open { display: block; }
+    .mobile-menu-panel { position: fixed; top: 0; right: 0; bottom: 0; width: min(85vw, 360px); z-index: 101; background: linear-gradient(180deg, #151b2c 0%, #0f172a 100%); border-left: 1px solid rgba(255,255,255,.08); transform: translateX(100%); transition: transform .3s ease; overflow-y: auto; display: flex; flex-direction: column; padding: 1.5rem; }
+    .mobile-menu-panel.is-open { transform: translateX(0); }
+    .mobile-menu-close { display: flex; justify-content: flex-end; margin-bottom: 1rem; }
+    .mobile-menu-close button { background: none; border: none; color: #e5e7eb; padding: .5rem; cursor: pointer; min-width: 44px; min-height: 44px; display: flex; align-items: center; justify-content: center; }
+    .mobile-menu-section-label { font-size: .7rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #64748b; padding: .6rem 0; }
+    .mobile-menu-panel a { display: block; padding: .75rem 0; color: #e5e7eb; font-size: 1.05rem; font-weight: 600; }
+    .mobile-menu-panel a:hover { color: #fb923c; }
+    @media (max-width: 991.98px) {
+      .public-shell-hamburger { display: flex; }
+      .public-shell-topbar .inner { min-height: auto; flex-wrap: wrap; padding: .85rem 0; }
+      .public-shell-brand { flex: 1 1 auto; }
+      .public-shell-brand img { height: 26px; }
+      .account-name, .account-chevron { display: none !important; }
+    }
+
+    .container { max-width: 1280px !important; padding-left: 1rem; padding-right: 1rem; }
+    @media (min-width: 640px) { .container { padding-left: 1.5rem; padding-right: 1.5rem; } }
+    @media (min-width: 1024px) { .container { padding-left: 2rem; padding-right: 2rem; } }
+
+    .profile-wrap { max-width: 900px; margin: 0 auto; padding: 0 1rem 3rem; }
+
+    .cover-area { height: 160px; background: linear-gradient(135deg, #1a1f2e 0%, #151b2c 50%, #0f172a 100%); border-radius: 0 0 20px 20px; position: relative; margin-bottom: -50px; }
+    @media (max-width: 575.98px) { .cover-area { height: 120px; margin-bottom: -40px; } }
+
+    .profile-header { position: relative; z-index: 2; display: flex; flex-wrap: wrap; align-items: flex-start; justify-content: space-between; gap: 1rem; padding-top: .5rem; }
+    @media (max-width: 575.98px) { .profile-header { flex-direction: column; align-items: center; text-align: center; } }
+
+    .profile-left { display: flex; flex-direction: column; align-items: flex-start; gap: .5rem; }
+    @media (max-width: 575.98px) { .profile-left { align-items: center; } }
+
+    .avatar-wrap { position: relative; }
+    .profile-avatar { width: 100px; height: 100px; border-radius: 50%; background: #f8fafc; border: 4px solid var(--bg); overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    @media (max-width: 575.98px) { .profile-avatar { width: 80px; height: 80px; border-width: 3px; } }
+    .profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+    .profile-avatar-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 2.5rem; font-weight: 800; color: #fff; background: var(--cta-gradient-2); }
+    @media (max-width: 575.98px) { .profile-avatar-fallback { font-size: 2rem; } }
+    .verified-badge { position: absolute; bottom: 2px; right: 2px; width: 28px; height: 28px; border-radius: 50%; background: #2563eb; border: 3px solid var(--bg); display: flex; align-items: center; justify-content: center; }
+    .verified-badge i { font-size: .75rem; color: #fff; }
+
+    .name-row { display: flex; align-items: center; gap: .5rem; margin-top: .75rem; flex-wrap: wrap; }
+    @media (max-width: 575.98px) { .name-row { justify-content: center; } }
+    .name-row h1 { margin: 0; font-size: 1.5rem; font-weight: 800; color: #fff; }
+    @media (max-width: 575.98px) { .name-row h1 { font-size: 1.25rem; } }
+    .creator-badge { display: inline-flex; align-items: center; gap: .3rem; padding: .2rem .6rem; border-radius: 999px; background: rgba(249,115,22,.15); border: 1px solid rgba(249,115,22,.3); color: #fb923c; font-size: .7rem; font-weight: 700; }
+    .creator-badge i { font-size: .75rem; }
+
+    .handle { font-size: .85rem; color: var(--muted); font-weight: 500; }
+
+    .stats-row { display: flex; align-items: center; gap: 1.5rem; margin-top: .5rem; }
+    @media (max-width: 575.98px) { .stats-row { justify-content: center; } }
+    .stat-group { text-align: center; }
+    .stat-num { font-size: 1.1rem; font-weight: 800; color: #fff; }
+    .stat-label { font-size: .75rem; color: var(--muted); margin-top: .1rem; }
+
+    .sub-row { display: flex; align-items: center; gap: .65rem; margin-top: .6rem; flex-wrap: wrap; }
+    @media (max-width: 575.98px) { .sub-row { justify-content: center; } }
+    .sub-price { display: inline-flex; align-items: center; gap: .3rem; padding: .3rem .75rem; border-radius: 999px; background: rgba(34,197,94,.12); border: 1px solid rgba(34,197,94,.25); color: #4ade80; font-size: .8rem; font-weight: 700; }
+    .sub-tagline { font-size: .8rem; color: var(--muted); }
+
+    .profile-right { display: flex; flex-direction: column; align-items: flex-end; gap: .6rem; }
+    @media (max-width: 575.98px) { .profile-right { align-items: center; width: 100%; } }
+    .edit-btn { display: inline-flex; align-items: center; gap: .4rem; padding: .5rem 1.1rem; border-radius: 999px; background: var(--panel); border: 1px solid var(--line); color: #e5e7eb; font-weight: 700; font-size: .85rem; cursor: pointer; transition: border-color .18s, background .18s; }
+    .edit-btn:hover { border-color: rgba(255,255,255,.2); background: var(--panel-2); }
+    .icon-btn-row { display: flex; gap: .5rem; }
+    .icon-btn { width: 38px; height: 38px; border-radius: 10px; background: var(--panel); border: 1px solid var(--line); color: #94a3b8; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color .18s, color .18s; }
+    .icon-btn:hover { border-color: rgba(255,255,255,.2); color: #e5e7eb; }
+    .icon-btn i { font-size: 1rem; }
+
+    .pill-tab-bar { display: flex; gap: .5rem; margin-top: 1.75rem; }
+    .pill-tab { padding: .5rem 1.25rem; border-radius: 999px; font-size: .85rem; font-weight: 700; cursor: pointer; border: 1px solid var(--line); background: var(--panel); color: var(--muted); transition: color .18s, background .18s, border-color .18s; }
+    .pill-tab:hover { color: #e5e7eb; }
+    .pill-tab.active { background: var(--cta-gradient-2); border-color: transparent; color: #fff; }
+
+    .posts-feed { display: flex; flex-direction: column; gap: 1rem; margin-top: 1.5rem; }
+    .post-card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 1rem; display: flex; gap: 1rem; transition: border-color .2s; }
+    .post-card:hover { border-color: rgba(255,255,255,.14); }
+    @media (max-width: 575.98px) { .post-card { flex-direction: column; } }
+
+    .post-thumb { width: 70px; height: 70px; border-radius: 12px; overflow: hidden; flex-shrink: 0; background: #1e293b; display: flex; align-items: center; justify-content: center; }
+    .post-thumb img { width: 100%; height: 100%; object-fit: cover; }
+    .post-thumb-fallback { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; color: #64748b; }
+    @media (max-width: 575.98px) { .post-thumb { width: 100%; height: 140px; } .post-thumb-fallback { font-size: 2.5rem; } }
+
+    .post-body { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: .5rem; }
+    .post-badges { display: flex; align-items: center; gap: .4rem; flex-wrap: wrap; }
+    .post-badge { display: inline-flex; align-items: center; gap: .25rem; padding: .2rem .55rem; border-radius: 999px; font-size: .68rem; font-weight: 700; }
+    .post-badge.pinned { background: rgba(249,115,22,.12); border: 1px solid rgba(249,115,22,.25); color: #fb923c; }
+    .post-badge.subscribers { background: rgba(37,99,235,.12); border: 1px solid rgba(37,99,235,.25); color: #60a5fa; }
+    .post-badge i { font-size: .7rem; }
+
+    .post-stats { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+    .post-stat { display: inline-flex; align-items: center; gap: .3rem; font-size: .75rem; color: var(--muted); font-weight: 600; }
+    .post-stat i { font-size: .85rem; color: #64748b; }
+    .post-time { font-size: .75rem; color: #475569; margin-left: auto; }
+    @media (max-width: 575.98px) { .post-time { margin-left: 0; } }
+
+    .about-card { background: var(--panel); border: 1px solid var(--line); border-radius: 16px; padding: 1.5rem; margin-top: 1.5rem; }
+    .about-card h2 { margin: 0 0 .75rem; font-size: 1.1rem; font-weight: 800; color: #fff; }
+    .about-card p { margin: 0; font-size: .88rem; color: var(--muted); line-height: 1.6; }
+
+    .tab-content { display: none; }
+    .tab-content.active { display: block; }
+
+    .public-shell-footer { padding: 1.5rem 0 1.2rem; color: var(--muted); background: linear-gradient(135deg, #111827, #1f2937, #111827); border-top: 1px solid #1f293b; }
+    .public-shell-footer .footer-topline, .public-shell-footer .footer-bottomline { height: 3px; width: 100%; border-radius: 999px; background: linear-gradient(90deg, rgba(249,115,22,0) 0%, rgba(249,115,22,.85) 18%, rgba(168,85,247,.95) 50%, rgba(236,72,153,.85) 82%, rgba(236,72,153,0) 100%); opacity: .95; }
+    .public-shell-footer .footer-topline { margin-bottom: 1rem; }
+    .public-shell-footer .footer-bottomline { margin-top: 1.5rem; margin-bottom: .75rem; }
+    .public-shell-footer .footer-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
+    .public-shell-footer h3 { margin: 0 0 .75rem; font-size: .875rem; font-weight: 700; color: #fff; position: relative; padding-bottom: .75rem; }
+    .public-shell-footer h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 32px; height: 2px; border-radius: 999px; background: var(--cta-gradient); }
+    .public-shell-footer .footer-links a { display: block; padding: .15rem 0; color: #9ca3af; font-size: .75rem; line-height: 1.4; }
+    .public-shell-footer .footer-links a:hover { color: #fff; }
+    .public-shell-footer .footer-social { display: inline-flex; gap: .5rem; }
+    .public-shell-footer .footer-social a { width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: #1f2937; color: #9ca3af; border: 1px solid rgba(255,255,255,.08); }
+    .public-shell-footer .footer-social a:hover { background: rgba(249,115,22,.16); border-color: rgba(249,115,22,.24); color: #fff; }
+    @media (max-width: 991.98px) {
+      .public-shell-footer { padding: 2rem 0 1.5rem; }
+      .public-shell-footer .footer-grid { grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+    }
+
+    .share-modal-overlay { position: fixed; inset: 0; z-index: 200; background: rgba(0,0,0,.65); backdrop-filter: blur(6px); display: none; align-items: center; justify-content: center; padding: 1rem; }
+    .share-modal-overlay.is-open { display: flex; }
+    .share-modal { width: 100%; max-width: 560px; max-height: 90vh; overflow-y: auto; background: #0d1117; border: 1px solid var(--line); border-radius: 20px; box-shadow: 0 24px 64px rgba(0,0,0,.5); padding: 1.5rem; }
+    @media (max-width: 575.98px) { .share-modal { padding: 1.25rem; max-height: 92vh; } }
+    .share-modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1.25rem; }
+    .share-modal-header-left { display: flex; align-items: center; gap: .6rem; }
+    .share-modal-header-left i.share-icon { font-size: 1.3rem; color: #fb923c; }
+    .share-modal-header-left h2 { font-size: 1.15rem; font-weight: 800; color: #fff; margin: 0; }
+    .share-modal-header-right { display: flex; align-items: center; gap: .4rem; }
+    .share-modal-profile-btn { width: 32px; height: 32px; border-radius: 50%; background: var(--cta-gradient-2); display: flex; align-items: center; justify-content: center; font-size: .7rem; font-weight: 800; color: #fff; border: none; cursor: pointer; flex-shrink: 0; }
+    .share-modal-close { background: none; border: none; color: #94a3b8; font-size: 1.5rem; cursor: pointer; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; border-radius: 8px; transition: background .18s, color .18s; }
+    .share-modal-close:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+    .share-link-row { display: flex; align-items: center; gap: .75rem; padding: .85rem; background: var(--panel); border: 1px solid var(--line); border-radius: 14px; margin-bottom: 1.25rem; }
+    .share-link-avatar { width: 44px; height: 44px; border-radius: 50%; background: var(--cta-gradient-2); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .85rem; flex-shrink: 0; }
+    .share-link-info { flex: 1; min-width: 0; }
+    .share-link-name { font-size: .88rem; font-weight: 700; color: #fff; }
+    .share-link-url { font-size: .75rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .share-link-actions { display: flex; gap: .4rem; flex-shrink: 0; }
+    .share-link-btn { width: 36px; height: 36px; border-radius: 10px; background: rgba(255,255,255,.05); border: 1px solid var(--line); color: #94a3b8; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: border-color .18s, color .18s; }
+    .share-link-btn:hover { border-color: rgba(255,255,255,.2); color: #e5e7eb; }
+    .share-link-btn i { font-size: .95rem; }
+
+    .share-as { text-align: center; margin-bottom: 1.25rem; }
+    .share-as-avatar { width: 56px; height: 56px; border-radius: 50%; background: var(--cta-gradient-2); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: 1.1rem; margin: 0 auto .5rem; }
+    .share-as-name { font-size: .88rem; font-weight: 700; color: #fff; }
+
+    .share-using-label { font-size: .8rem; font-weight: 700; color: var(--muted); margin-bottom: .85rem; }
+    .share-apps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: .75rem; }
+    @media (max-width: 575.98px) { .share-apps-grid { grid-template-columns: repeat(3, 1fr); } }
+    .share-app { display: flex; flex-direction: column; align-items: center; gap: .35rem; cursor: pointer; transition: transform .15s; }
+    .share-app:hover { transform: translateY(-2px); }
+    .share-app-icon { width: 48px; height: 48px; border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: #fff; }
+    .share-app-label { font-size: .68rem; font-weight: 600; color: #cbd5e1; text-align: center; line-height: 1.2; }
+    .share-app-install { font-size: .6rem; color: #64748b; font-weight: 600; }
+  </style>
+</head>
+<body>
+  <header class="public-shell-topbar">
+    <div class="container inner">
+      <a class="public-shell-brand" href="index.html" aria-label="FansFollow.me">
+        <img src="https://fansfollow.me/public/img/logo_2-1718299542.png" alt="FansFollow.me" width="120" height="30">
+      </a>
+      <nav class="public-shell-nav d-none d-lg-flex" aria-label="Primary">
+        <a href="for-creators.html">For Creators</a>
+        <a href="fans.html">For Fans</a>
+        <a href="celebrities.html">Celebrities</a>
+        <a href="explore.html">Explore</a>
+        <details class="public-shell-more">
+          <summary>More</summary>
+          <div class="public-shell-nav-panel">
+            <a href="casting.html"><i class="bi bi-film"></i> Movie Casting</a>
+            <a href="live-streams.html"><i class="bi bi-broadcast"></i> Live Streams</a>
+            <a href="business.html"><i class="bi bi-briefcase"></i> Business</a>
+            <a href="contact.html"><i class="bi bi-chat-dots"></i> Support</a>
+          </div>
+        </details>
+      </nav>
+      <div class="public-shell-actions">
+        <a class="btn btn-primary public-shell-button" href="settings.html"><i class="bi bi-pencil" style="margin-right:.35rem;"></i>Edit my page</a>
+        <div class="account-trigger" onclick="document.getElementById('accountMenu').classList.toggle('is-open')">
+          <div class="account-avatar">FF</div>
+          <span class="account-name d-none d-lg-inline">Creator</span>
+          <i class="bi bi-chevron-down account-chevron d-none d-lg-inline"></i>
+        </div>
+        <div class="account-menu" id="accountMenu">
+          <div class="menu-balance"><div class="bal-label">Balance</div><div class="bal-value">&pound;0.00</div></div>
+          <a href="wallet.html"><i class="bi bi-wallet2"></i> Wallet</a>
+          <a href="my-page.html"><i class="bi bi-person"></i> My page</a>
+          <a href="creator-dashboard.html"><i class="bi bi-speedometer2"></i> Dashboard</a>
+          <a href="#"><i class="bi bi-file-earmark-plus"></i> My Posts</a>
+          <a href="#"><i class="bi bi-safe"></i> Vault</a>
+          <div class="menu-divider"></div>
+          <a href="#"><i class="bi bi-people"></i> My subscribers</a>
+          <a href="subscriptions.html"><i class="bi bi-person-check"></i> My subscriptions</a>
+          <a href="bookmarks.html"><i class="bi bi-bookmark"></i> Bookmarks</a>
+          <a href="#"><i class="bi bi-heart"></i> Likes</a>
+          <div class="menu-divider"></div>
+          <a href="#"><i class="bi bi-moon-stars"></i> Dark mode</a>
+          <a href="index.html"><i class="bi bi-box-arrow-right"></i> Logout</a>
+        </div>
+      </div>
+      <button class="public-shell-hamburger" onclick="document.querySelector('.mobile-menu-overlay').classList.add('is-open');document.querySelector('.mobile-menu-panel').classList.add('is-open')" aria-label="Open menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" x2="21" y1="6" y2="6"/><line x1="3" x2="21" y1="12" y2="12"/><line x1="3" x2="21" y1="18" y2="18"/></svg>
+      </button>
+    </div>
+  </header>
+
+  <div class="mobile-menu-overlay" onclick="this.classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')"></div>
+  <div class="mobile-menu-panel">
+    <div class="mobile-menu-close">
+      <button onclick="document.querySelector('.mobile-menu-overlay').classList.remove('is-open');document.querySelector('.mobile-menu-panel').classList.remove('is-open')" aria-label="Close menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" x2="6" y1="6" y2="18"/><line x1="6" x2="18" y1="6" y2="18"/></svg>
+      </button>
+    </div>
+    <div class="mobile-menu-section-label">Navigation</div>
+    <a href="for-creators.html">For Creators</a>
+    <a href="fans.html">For Fans</a>
+    <a href="celebrities.html">Celebrities</a>
+    <a href="explore.html">Explore</a>
+    <div class="mobile-menu-section-label" style="margin-top:.5rem">More</div>
+    <a href="casting.html">Movie Casting</a>
+    <a href="live-streams.html">Live Streams</a>
+    <a href="business.html">Business</a>
+    <a href="contact.html">Support</a>
+    <div class="mobile-menu-section-label" style="margin-top:.5rem">Account</div>
+    <a href="creator-dashboard.html">Dashboard</a>
+    <a href="settings.html">Edit my page</a>
+    <a href="wallet.html">Wallet</a>
+    <a href="index.html">Log out</a>
+  </div>
+
+  <main>
+    <div class="profile-wrap">
+      <div class="cover-area"></div>
+
+      <div class="profile-header">
+        <div class="profile-left">
+          <div class="avatar-wrap">
+            <div class="profile-avatar">
+              <div class="profile-avatar-fallback">FM</div>
+            </div>
+            <div class="verified-badge"><i class="bi bi-star-fill"></i></div>
+          </div>
+
+          <div class="name-row">
+            <h1>FFM-Martin</h1>
+            <span class="creator-badge"><i class="bi bi-patch-check-fill"></i> Creator</span>
+          </div>
+          <div class="handle">@FFM-Martin</div>
+
+          <div class="stats-row">
+            <div class="stat-group"><div class="stat-num">4</div><div class="stat-label">Posts</div></div>
+            <div class="stat-group"><div class="stat-num">10</div><div class="stat-label">Subscribers</div></div>
+            <div class="stat-group"><div class="stat-num">27</div><div class="stat-label">Likes</div></div>
+          </div>
+
+          <div class="sub-row">
+            <span class="sub-price"><i class="bi bi-currency-pound"></i> 0.00 / Monthly</span>
+            <span class="sub-tagline">FFM Director</span>
+          </div>
+        </div>
+
+        <div class="profile-right">
+          <a class="edit-btn" href="settings.html"><i class="bi bi-pencil"></i> Edit Profile</a>
+          <div class="icon-btn-row">
+            <button class="icon-btn" onclick="document.getElementById('shareModal').classList.add('is-open')" aria-label="Share profile"><i class="bi bi-upload"></i></button>
+            <button class="icon-btn" onclick="alert('This is a design preview — more options are not functional here.');" aria-label="More options"><i class="bi bi-three-dots"></i></button>
+          </div>
+        </div>
+      </div>
+
+      <div class="pill-tab-bar">
+        <div class="pill-tab active" onclick="switchTab('posts')">Posts (4)</div>
+        <div class="pill-tab" onclick="switchTab('about')">About</div>
+      </div>
+
+      <div class="tab-content active" id="tab-posts">
+        <div class="posts-feed">
+
+          <div class="post-card">
+            <div class="post-thumb">
+              <div class="post-thumb-fallback"><i class="bi bi-image"></i></div>
+            </div>
+            <div class="post-body">
+              <div class="post-badges">
+                <span class="post-badge pinned"><i class="bi bi-pin-angle-fill"></i> Pinned</span>
+                <span class="post-badge subscribers"><i class="bi bi-lock-fill"></i> Subscribers</span>
+              </div>
+              <div class="post-stats">
+                <span class="post-stat"><i class="bi bi-eye"></i> 142</span>
+                <span class="post-stat"><i class="bi bi-heart"></i> 12</span>
+                <span class="post-stat"><i class="bi bi-chat"></i> 3</span>
+                <span class="post-time">2 years ago</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-thumb">
+              <div class="post-thumb-fallback"><i class="bi bi-camera-video"></i></div>
+            </div>
+            <div class="post-body">
+              <div class="post-badges">
+                <span class="post-badge subscribers"><i class="bi bi-lock-fill"></i> Subscribers</span>
+              </div>
+              <div class="post-stats">
+                <span class="post-stat"><i class="bi bi-eye"></i> 89</span>
+                <span class="post-stat"><i class="bi bi-heart"></i> 8</span>
+                <span class="post-stat"><i class="bi bi-chat"></i> 1</span>
+                <span class="post-time">2 years ago</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-thumb">
+              <div class="post-thumb-fallback"><i class="bi bi-image"></i></div>
+            </div>
+            <div class="post-body">
+              <div class="post-badges">
+                <span class="post-badge subscribers"><i class="bi bi-lock-fill"></i> Subscribers</span>
+              </div>
+              <div class="post-stats">
+                <span class="post-stat"><i class="bi bi-eye"></i> 67</span>
+                <span class="post-stat"><i class="bi bi-heart"></i> 5</span>
+                <span class="post-stat"><i class="bi bi-chat"></i> 0</span>
+                <span class="post-time">2 years ago</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="post-card">
+            <div class="post-thumb">
+              <div class="post-thumb-fallback"><i class="bi bi-mic"></i></div>
+            </div>
+            <div class="post-body">
+              <div class="post-badges">
+                <span class="post-badge subscribers"><i class="bi bi-lock-fill"></i> Subscribers</span>
+              </div>
+              <div class="post-stats">
+                <span class="post-stat"><i class="bi bi-eye"></i> 54</span>
+                <span class="post-stat"><i class="bi bi-heart"></i> 2</span>
+                <span class="post-stat"><i class="bi bi-chat"></i> 0</span>
+                <span class="post-time">3 years ago</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="tab-content" id="tab-about">
+        <div class="about-card">
+          <h2>About FFM-Martin</h2>
+          <p>Welcome to my page! I'm FFM-Martin, director and creator at FansFollow.me. I share exclusive behind-the-scenes content, production updates, and personal messages with my subscribers. Join me on this journey as we build something special together. New posts coming soon — stay tuned!</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="public-shell-footer">
+    <div class="container">
+      <div class="footer-topline"></div>
+      <div class="footer-grid" style="gap: 2rem;">
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">For Creators</h3>
+          <a href="signup.html" style="font-size: .9rem;">Getting Started</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Personal Video Messages</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Revenue Streams</h3>
+          <a href="for-creators.html" style="font-size: .9rem;">Content Monetization</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Paid Phone Calls</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Text Coaching</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Video Consultations</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Support</h3>
+          <a href="contact.html" style="font-size: .9rem;">Help Center</a>
+          <a href="contact.html" style="font-size: .9rem;">Contact Us</a>
+          <a href="for-creators.html" style="font-size: .9rem;">Creator Resources</a>
+          <a href="contact.html" style="font-size: .9rem;">Community</a>
+        </div>
+        <div class="footer-links">
+          <h3 style="font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: .75rem;">Advanced</h3>
+          <a href="business.html#token" style="font-size: .9rem;">Token Ecosystem</a>
+          <a href="business.html#presale" style="font-size: .9rem;">Presale Info</a>
+        </div>
+      </div>
+      <div class="footer-bottomline"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .75rem; padding: .75rem 0;">
+        <div style="display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">&copy; 2026 FansFollow.me. All rights reserved.</span>
+          <span style="font-size: .85rem; color: #94a3b8;"><span style="color: #f97316; font-weight: 800;">&#8383;</span> <strong style="color: #fff;">BTC/ETH/USDT/SOL Accepted</strong></span>
+          <a href="privacy.html" style="font-size: .85rem; color: #94a3b8;">Privacy Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="terms.html" style="font-size: .85rem; color: #94a3b8;">Terms of Service</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="cookies.html" style="font-size: .85rem; color: #94a3b8;">Cookie Policy</a>
+          <span style="color: #4b5563;">&bull;</span>
+          <a href="faq.html" style="font-size: .85rem; color: #94a3b8;">FAQ</a>
+        </div>
+        <div style="display: flex; align-items: center; gap: .5rem; flex-wrap: wrap;">
+          <span style="font-size: .85rem; color: #94a3b8;">Follow us:</span>
+          <div class="footer-social" style="display: flex; gap: .5rem;" aria-label="Social links">
+            <a href="https://www.facebook.com/profile.php?id=100089966703593" target="_blank" rel="noopener" aria-label="Facebook" style="color: #94a3b8;"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/fansfollowdotme" target="_blank" rel="noopener" aria-label="Instagram" style="color: #94a3b8;"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.youtube.com/@FFMFansFollowME" target="_blank" rel="noopener" aria-label="YouTube" style="color: #94a3b8;"><i class="fab fa-youtube"></i></a>
+            <a href="https://www.tiktok.com/@fansfollow.me" target="_blank" rel="noopener" aria-label="TikTok" style="color: #94a3b8;"><i class="fab fa-tiktok"></i></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="share-modal-overlay" id="shareModal" onclick="if(event.target===this)this.classList.remove('is-open')">
+    <div class="share-modal">
+      <div class="share-modal-header">
+        <div class="share-modal-header-left">
+          <i class="bi bi-share-fill share-icon"></i>
+          <h2>Share link</h2>
+        </div>
+        <div class="share-modal-header-right">
+          <button class="share-modal-profile-btn" aria-label="Profile">MR</button>
+          <button class="share-modal-close" onclick="document.getElementById('shareModal').classList.remove('is-open')" aria-label="Close">&times;</button>
+        </div>
+      </div>
+
+      <div class="share-link-row">
+        <div class="share-link-avatar">MR</div>
+        <div class="share-link-info">
+          <div class="share-link-name">Martin Royle</div>
+          <div class="share-link-url">https://fansfollow.me/FFM-Martin</div>
+        </div>
+        <div class="share-link-actions">
+          <button class="share-link-btn" onclick="alert('This is a design preview — QR code is not functional here.')" aria-label="QR code"><i class="bi bi-qr-code"></i></button>
+          <button class="share-link-btn" onclick="alert('This is a design preview — copying is not functional here.')" aria-label="Copy link"><i class="bi bi-clipboard"></i></button>
+        </div>
+      </div>
+
+      <div class="share-as">
+        <div class="share-as-avatar">MR</div>
+        <div class="share-as-name">Martin Royle</div>
+      </div>
+
+      <div class="share-using-label">Share using</div>
+      <div class="share-apps-grid">
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#2563eb;"><i class="bi bi-broadcast"></i></div>
+          <span class="share-app-label">Nearby Sharing</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#25d366;"><i class="bi bi-whatsapp"></i></div>
+          <span class="share-app-label">WhatsApp</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#ea4335;"><i class="bi bi-google"></i></div>
+          <span class="share-app-label">Gmail</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#1877f2;"><i class="bi bi-facebook"></i></div>
+          <span class="share-app-label">Facebook</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#0f172a;"><i class="bi bi-twitter-x"></i></div>
+          <span class="share-app-label">X</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#0a66c2;"><i class="bi bi-linkedin"></i></div>
+          <span class="share-app-label">LinkedIn</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#0078d4;"><i class="bi bi-microsoft-outlook"></i></div>
+          <span class="share-app-label">Outlook</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#4285f4;"><i class="bi bi-cloud-arrow-up"></i></div>
+          <span class="share-app-label">iCloud</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#25d366;"><i class="bi bi-whatsapp"></i></div>
+          <span class="share-app-label">WhatsApp</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#0061ff;"><i class="bi bi-dropbox"></i></div>
+          <span class="share-app-label">Dropbox</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#2d8cff;"><i class="bi bi-camera-video"></i></div>
+          <span class="share-app-label">Zoom</span>
+          <span class="share-app-install">Install &darr;</span>
+        </div>
+        <div class="share-app" onclick="alert('This is a design preview.')">
+          <div class="share-app-icon" style="background:#5865f2;"><i class="bi bi-discord"></i></div>
+          <span class="share-app-label">Discord</span>
+          <span class="share-app-install">Install &darr;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function() {
+      var bar = document.querySelector('.public-shell-topbar');
+      if (!bar) return;
+      function onScroll() { bar.classList.toggle('scrolled', window.scrollY > 20); }
+      window.addEventListener('scroll', onScroll, {passive: true});
+      onScroll();
+    })();
+
+    document.addEventListener('click', function(e) {
+      var menu = document.getElementById('accountMenu');
+      var trigger = document.querySelector('.account-trigger');
+      if (menu && !menu.contains(e.target) && trigger && !trigger.contains(e.target)) menu.classList.remove('is-open');
+    });
+
+    function switchTab(tab) {
+      document.querySelectorAll('.pill-tab').forEach(function(t, i) {
+        t.classList.toggle('active', i === (tab === 'posts' ? 0 : 1));
+      });
+      document.getElementById('tab-posts').classList.toggle('active', tab === 'posts');
+      document.getElementById('tab-about').classList.toggle('active', tab === 'about');
+    }
+  </script>
+</body>
+</html>

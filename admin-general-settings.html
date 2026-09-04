@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="FansFollow.me Admin - General Settings">
+  <meta name="theme-color" content="#0a0d14">
+  <title>General Settings - FansFollow.me Admin</title>
+  <link href="https://fansfollow.me/img/favicon.png" rel="icon">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0a0d14;
+      --sidebar-bg: #0d1119;
+      --card-bg: #131722;
+      --card-bg-2: #161b28;
+      --border: rgba(255,255,255,0.06);
+      --border-2: rgba(255,255,255,0.04);
+      --text: #e5e7eb;
+      --text-primary: #f1f5f9;
+      --muted: #6b7689;
+      --muted-2: #4a5364;
+      --accent: #f97316;
+      --accent-soft: rgba(249,115,22,0.12);
+      --accent-border: rgba(249,115,22,0.25);
+      --green: #22c55e;
+      --green-soft: rgba(34,197,94,0.12);
+      --red: #ef4444;
+      --red-soft: rgba(239,68,68,0.12);
+      --blue: #3b82f6;
+      --blue-soft: rgba(59,130,246,0.12);
+      --purple: #a855f7;
+      --purple-soft: rgba(168,85,247,0.12);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Inter', system-ui, -apple-system, sans-serif; font-weight: 400; overflow-x: hidden; }
+    a { color: inherit; text-decoration: none; }
+    ::-webkit-scrollbar { width: 6px; height: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 999px; }
+    ::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.15); }
+
+    .admin-layout { display: flex; min-height: 100vh; }
+
+    .admin-sidebar { width: 320px; min-width: 320px; background: var(--sidebar-bg); border-right: 1px solid var(--border); position: fixed; top: 0; left: 0; bottom: 0; display: flex; flex-direction: column; z-index: 100; }
+    .sidebar-header { padding: 1.5rem 1.5rem 1rem; border-bottom: 1px solid var(--border); }
+    .sidebar-logo { font-size: 1.35rem; font-weight: 900; color: #fff; letter-spacing: -0.02em; }
+    .sidebar-tagline { font-size: .6rem; font-weight: 700; letter-spacing: .12em; color: var(--muted); margin-top: .15rem; text-transform: uppercase; }
+    .sidebar-nav { flex: 1; overflow-y: auto; padding: .75rem .75rem 1.5rem; }
+    .nav-section-label { font-size: .65rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted-2); padding: .75rem .75rem .4rem; }
+    .nav-item { display: flex; align-items: center; gap: .75rem; padding: .65rem .75rem; border-radius: 10px; color: var(--muted); font-weight: 600; font-size: .88rem; cursor: pointer; position: relative; transition: background .15s, color .15s; margin-bottom: .15rem; }
+    .nav-item i { font-size: 1.15rem; width: 1.5rem; text-align: center; flex-shrink: 0; }
+    .nav-item:hover { background: rgba(255,255,255,0.04); color: #cbd5e1; }
+    .nav-item.active { background: var(--accent-soft); color: var(--accent); }
+    .nav-item.active::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 3px; height: 60%; background: var(--accent); border-radius: 999px; }
+    .nav-item .chevron { margin-left: auto; font-size: .8rem; transition: transform .2s; }
+    .nav-item.expanded .chevron { transform: rotate(90deg); }
+    .nav-sub { display: none; padding-left: 2.5rem; }
+    .nav-sub.open { display: block; }
+    .nav-sub .nav-item { font-size: .82rem; padding: .45rem .75rem; }
+    .nav-sub .nav-item::before { display: none; }
+
+    .admin-main { flex: 1; margin-left: 320px; display: flex; flex-direction: column; min-height: 100vh; }
+    .admin-topbar { display: flex; align-items: center; justify-content: flex-end; gap: 1rem; padding: 1rem 2rem; border-bottom: 1px solid var(--border); position: sticky; top: 0; background: rgba(10,13,20,0.85); backdrop-filter: blur(12px); z-index: 50; }
+    .view-site-link { display: inline-flex; align-items: center; gap: .35rem; font-size: .85rem; font-weight: 600; color: var(--muted); transition: color .15s; }
+    .view-site-link:hover { color: #fff; }
+    .admin-avatar { width: 36px; height: 36px; border-radius: 50%; background: linear-gradient(135deg, #f97316, #9333ea); display: flex; align-items: center; justify-content: center; font-weight: 800; color: #fff; font-size: .8rem; cursor: pointer; border: 2px solid var(--border); }
+
+    .admin-content { padding: 2rem; flex: 1; max-width: 900px; }
+    @media (max-width: 768px) { .admin-content { padding: 1.25rem; } }
+
+    .breadcrumb-row { display: flex; align-items: center; gap: .4rem; font-size: .82rem; color: var(--muted); margin-bottom: 1.25rem; }
+    .breadcrumb-row a { color: var(--muted); transition: color .15s; }
+    .breadcrumb-row a:hover { color: #fff; }
+    .breadcrumb-row .sep { color: var(--muted-2); }
+    .breadcrumb-row .current { color: var(--text); font-weight: 600; }
+
+    .page-title { font-size: 1.5rem; font-weight: 800; color: #fff; margin-bottom: 1.5rem; }
+
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 14px; overflow: hidden; }
+    .card-body { padding: 1.5rem; }
+
+    /* ── Form rows ── */
+    .form-row { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border-2); }
+    .form-row:last-child { border-bottom: none; }
+    .form-row:first-child { padding-top: 0; }
+    .form-label-col { width: 240px; min-width: 240px; flex-shrink: 0; }
+    .form-label { font-size: .88rem; font-weight: 700; color: #e5e7eb; line-height: 1.4; }
+    .form-control-col { flex: 1; min-width: 0; }
+
+    .form-input { width: 100%; padding: .6rem .85rem; background: #0d1119; border: 1px solid var(--border); border-radius: 10px; color: #fff; font-family: inherit; font-size: .85rem; outline: none; transition: border-color .2s; }
+    .form-input::placeholder { color: var(--muted-2); }
+    .form-input:focus { border-color: var(--accent); }
+
+    .form-select { width: 100%; max-width: 240px; padding: .6rem .85rem; background: #0d1119; border: 1px solid var(--border); border-radius: 10px; color: #fff; font-family: inherit; font-size: .85rem; outline: none; cursor: pointer; appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%236b7689'%3E%3Cpath d='M6 8L2 4h8z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right .85rem center; padding-right: 2rem; }
+    .form-select:focus { border-color: var(--accent); }
+
+    .helper-text { font-size: .75rem; color: var(--muted); margin-top: .4rem; line-height: 1.4; }
+
+    .chip-row { display: flex; flex-wrap: wrap; gap: .5rem; align-items: center; }
+    .chip { display: inline-flex; align-items: center; gap: .35rem; padding: .35rem .7rem; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 999px; font-size: .8rem; font-weight: 600; color: #cbd5e1; }
+    .chip .chip-x { cursor: pointer; color: var(--muted); font-size: .9rem; line-height: 1; transition: color .15s; }
+    .chip .chip-x:hover { color: var(--red); }
+
+    .radio-group { display: flex; flex-direction: column; gap: .55rem; }
+    .radio-row { display: flex; align-items: center; gap: .5rem; cursor: pointer; }
+    .radio-row input[type="radio"] { appearance: none; width: 18px; height: 18px; border: 2px solid var(--muted-2); border-radius: 50%; position: relative; cursor: pointer; transition: border-color .2s; flex-shrink: 0; }
+    .radio-row input[type="radio"]:checked { border-color: var(--accent); }
+    .radio-row input[type="radio"]:checked::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 9px; height: 9px; border-radius: 50%; background: var(--accent); }
+    .radio-label { font-size: .85rem; font-weight: 600; color: #cbd5e1; }
+    .radio-note { font-size: .75rem; color: var(--muted); display: flex; align-items: center; gap: .3rem; margin-top: .15rem; padding-left: 1.7rem; }
+    .radio-note i { color: #eab308; }
+
+    .toggle-row { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+    .toggle-switch { position: relative; display: inline-block; width: 42px; height: 24px; flex-shrink: 0; }
+    .toggle-switch input { opacity: 0; width: 0; height: 0; }
+    .toggle-slider { position: absolute; cursor: pointer; inset: 0; background: #2a3242; border-radius: 999px; transition: background .25s; }
+    .toggle-slider::before { content: ''; position: absolute; height: 18px; width: 18px; left: 3px; bottom: 3px; background: #fff; border-radius: 50%; transition: transform .25s; }
+    .toggle-switch input:checked + .toggle-slider { background: var(--accent); }
+    .toggle-switch input:checked + .toggle-slider::before { transform: translateX(18px); }
+
+    .toggle-helper { font-size: .75rem; color: var(--muted); margin-top: .4rem; line-height: 1.4; }
+    .toggle-helper a { color: var(--accent); text-decoration: underline; }
+
+    .save-btn { display: inline-block; padding: .7rem 2rem; background: #fff; color: #0a0d14; border: none; border-radius: 10px; font-weight: 700; font-size: .88rem; cursor: pointer; transition: filter .18s; margin-top: 1.5rem; }
+    .save-btn:hover { filter: brightness(0.95); }
+
+    .admin-footer { text-align: center; padding: 1.5rem 2rem; color: var(--muted-2); font-size: .8rem; font-weight: 600; border-top: 1px solid var(--border); }
+
+    .sidebar-toggle { display: none; background: none; border: none; color: #fff; font-size: 1.5rem; cursor: pointer; padding: .25rem; }
+    .sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 99; }
+    .sidebar-overlay.open { display: block; }
+    @media (max-width: 1024px) {
+      .admin-sidebar { transform: translateX(-100%); transition: transform .3s; }
+      .admin-sidebar.open { transform: translateX(0); }
+      .admin-main { margin-left: 0; }
+      .sidebar-toggle { display: block; }
+      .admin-topbar { justify-content: space-between; }
+    }
+    @media (max-width: 640px) {
+      .form-row { flex-direction: column; gap: .5rem; }
+      .form-label-col { width: 100%; min-width: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-layout">
+    <aside class="admin-sidebar" id="sidebar">
+      <div class="sidebar-header">
+        <div class="sidebar-logo">FANS FOLLOW.ME</div>
+        <div class="sidebar-tagline">WHERE FANS BECOME FRIENDS</div>
+      </div>
+      <nav class="sidebar-nav">
+        <div class="nav-item" onclick="location.href='admin-dashboard.html'"><i class="bi bi-speedometer2"></i> Dashboard</div>
+        <div class="nav-item" onclick="location.href='admin-reports.html'"><i class="bi bi-flag"></i> Reports</div>
+        <div class="nav-item" onclick="location.href='admin-withdrawals.html'"><i class="bi bi-bank"></i> Withdrawals</div>
+        <div class="nav-item" onclick="location.href='admin-verification-requests.html'"><i class="bi bi-card-checklist"></i> Verification Requests</div>
+        <div class="nav-item" onclick="location.href='admin-deposits.html'"><i class="bi bi-box-arrow-in-down"></i> Deposits</div>
+        <div class="nav-item" onclick="location.href='admin-posts.html'"><i class="bi bi-file-earmark-text"></i> Posts</div>
+        <div class="nav-item" onclick="location.href='admin-age-verification.html'"><i class="bi bi-person-badge"></i> Age verification</div>
+        <div class="nav-item" onclick="location.href='admin-moderation-image-video.html'"><i class="bi bi-shield-check"></i> Moderation Image/Video</div>
+        <div class="nav-item" onclick="location.href='admin-reels.html'"><i class="bi bi-film"></i> Reels</div>
+        <div class="nav-item" onclick="location.href='admin-subscriptions.html'"><i class="bi bi-arrow-repeat"></i> Subscriptions</div>
+        <div class="nav-item" onclick="location.href='admin-transactions.html'"><i class="bi bi-receipt"></i> Transactions</div>
+        <div class="nav-item" onclick="location.href='admin-members.html'"><i class="bi bi-people"></i> Members</div>
+        <div class="nav-item" onclick="location.href='admin-advertising.html'"><i class="bi bi-megaphone"></i> Advertising</div>
+        <div class="nav-item" onclick="location.href='admin-gifts.html'"><i class="bi bi-gift"></i> Gifts</div>
+        <div class="nav-item"><i class="bi bi-emoji-smile"></i> Stickers</div>
+        <div class="nav-item" onclick="location.href='admin-giphy-api.html'"><i class="bi bi-image-fill"></i> Giphy API</div>
+        <div class="nav-item" onclick="toggleSub(this)"><i class="bi bi-chat-dots"></i> Comments and replies <i class="bi bi-chevron-right chevron"></i></div>
+        <div class="nav-sub">
+          <div class="nav-item" onclick="location.href='admin-comments.html'">Comments</div>
+          <div class="nav-item" onclick="location.href='admin-replies.html'">Replies</div>
+        </div>
+        <div class="nav-item"><i class="bi bi-envelope"></i> Messages</div>
+        <div class="nav-item" onclick="location.href='admin-announcements.html'"><i class="bi bi-broadcast"></i> Announcements</div>
+        <div class="nav-item" onclick="location.href='admin-maintenance-mode.html'"><i class="bi bi-tools"></i> Maintenance mode</div>
+        <div class="nav-item" onclick="location.href='admin-billing.html'"><i class="bi bi-credit-card"></i> Billing Information</div>
+        <div class="nav-item" onclick="location.href='admin-tax-rates.html'"><i class="bi bi-percent"></i> Tax Rates</div>
+        <div class="nav-item" onclick="toggleSub(this)"><i class="bi bi-geo-alt"></i> Countries / States <i class="bi bi-chevron-right chevron"></i></div>
+        <div class="nav-sub">
+          <div class="nav-item" onclick="location.href='admin-countries.html'">Countries</div>
+          <div class="nav-item" onclick="location.href='admin-states.html'">States</div>
+        </div>
+        <div class="nav-item" onclick="location.href='admin-email-settings.html'"><i class="bi bi-envelope-paper"></i> Email settings</div>
+        <div class="nav-item" onclick="location.href='admin-video-calls.html'"><i class="bi bi-camera-video"></i> Video Calls</div>
+        <div class="nav-item" onclick="location.href='admin-audio-calls.html'"><i class="bi bi-telephone"></i> Audio Calls</div>
+        <div class="nav-item" onclick="location.href='admin-live-streaming.html'"><i class="bi bi-broadcast-pin"></i> Live Streaming</div>
+        <div class="nav-item" onclick="location.href='admin-live-streaming-private-requests.html'"><i class="bi bi-megaphone-fill"></i> Live Streaming Requests Private</div>
+        <div class="nav-item" onclick="location.href='admin-push-notifications.html'"><i class="bi bi-bell"></i> Push Notifications</div>
+        <div class="nav-item" onclick="toggleSub(this)"><i class="bi bi-collection-play"></i> Stories <i class="bi bi-chevron-right chevron"></i></div>
+        <div class="nav-sub">
+          <div class="nav-item" onclick="location.href='admin-stories-settings.html'">Settings</div>
+          <div class="nav-item" onclick="location.href='admin-stories-posts.html'">Posts</div>
+          <div class="nav-item" onclick="location.href='admin-stories-backgrounds.html'">Background images</div>
+          <div class="nav-item">Google Fonts</div>
+        </div>
+        <div class="nav-item" onclick="location.href='admin-shop.html'"><i class="bi bi-bag"></i> Shop</div>
+        <div class="nav-item" onclick="location.href='admin-products.html'"><i class="bi bi-bag-check"></i> Products</div>
+        <div class="nav-item" onclick="location.href='admin-shop-categories.html'"><i class="bi bi-tags"></i> Shop Categories</div>
+        <div class="nav-item" onclick="location.href='admin-sales.html'"><i class="bi bi-graph-up"></i> Sales</div>
+        <div class="nav-item" onclick="location.href='admin-storage.html'"><i class="bi bi-hdd"></i> Storage</div>
+        <div class="nav-item" onclick="location.href='admin-theme.html'"><i class="bi bi-palette"></i> Theme</div>
+        <div class="nav-item" onclick="location.href='admin-custom-css-js.html'"><i class="bi bi-code-slash"></i> Custom CSS/JS</div>
+        <div class="nav-item" onclick="location.href='admin-referrals.html'"><i class="bi bi-person-plus"></i> Referrals</div>
+        <div class="nav-item" onclick="location.href='admin-languages.html'"><i class="bi bi-translate"></i> Languages</div>
+        <div class="nav-item" onclick="location.href='admin-categories.html'"><i class="bi bi-folder"></i> Categories</div>
+        <div class="nav-item" onclick="location.href='admin-pages.html'"><i class="bi bi-file-earmark"></i> Pages</div>
+        <div class="nav-item" onclick="location.href='admin-blog.html'"><i class="bi bi-journal-text"></i> Blog</div>
+        <div class="nav-item" onclick="toggleSub(this)"><i class="bi bi-credit-card-2-front"></i> Payment Settings <i class="bi bi-chevron-right chevron"></i></div>
+        <div class="nav-sub"><div class="nav-item" onclick="location.href='admin-payments.html'">General</div><div class="nav-item" onclick="location.href='admin-payments-1.html'">PayPal</div><div class="nav-item" onclick="location.href='admin-payments-2.html'">Stripe</div><div class="nav-item" onclick="location.href='admin-payments-3.html'">Bank transfer</div><div class="nav-item" onclick="location.href='admin-payments-4.html'">CCBill</div><div class="nav-item" onclick="location.href='admin-payments-5.html'">Paystack</div><div class="nav-item" onclick="location.href='admin-payments-6.html'">Coinpayments</div><div class="nav-item" onclick="location.href='admin-payments-7.html'">Mercadopago</div><div class="nav-item" onclick="location.href='admin-payments-8.html'">Flutterwave</div><div class="nav-item" onclick="location.href='admin-payments-9.html'">Mollie</div><div class="nav-item" onclick="location.href='admin-payments-10.html'">Razorpay</div><div class="nav-item" onclick="location.href='admin-payments-11.html'">Coinbase</div><div class="nav-item" onclick="location.href='admin-payments-12.html'">NowPayments</div></div>
+        <div class="nav-item" onclick="location.href='admin-profiles-social.html'"><i class="bi bi-share"></i> Profiles Social</div>
+        <div class="nav-item" onclick="location.href='admin-social-login.html'"><i class="bi bi-unlock"></i> Social Login</div>
+        <div class="nav-item" onclick="location.href='admin-google.html'"><i class="bi bi-google"></i> Google</div>
+        <div class="nav-item" onclick="location.href='admin-pwa.html'"><i class="bi bi-phone"></i> PWA</div>
+      </nav>
+    </aside>
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <div class="admin-main">
+      <div class="admin-topbar">
+        <button class="sidebar-toggle" onclick="openSidebar()"><i class="bi bi-list"></i></button>
+        <div style="display:flex; align-items:center; gap:1rem;">
+          <a href="index.html" class="view-site-link" target="_blank">View site <i class="bi bi-box-arrow-up-right"></i></a>
+          <div class="admin-avatar">AD</div>
+        </div>
+      </div>
+
+      <div class="admin-content">
+        <div class="breadcrumb-row">
+          <a href="admin-dashboard.html">Dashboard</a>
+          <span class="sep"><i class="bi bi-chevron-right" style="font-size:.7rem;"></i></span>
+          <span class="current">General Settings</span>
+        </div>
+        <h1 class="page-title">General Settings</h1>
+
+        <div class="card">
+          <div class="card-body">
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Name Site</div></div>
+              <div class="form-control-col"><input type="text" class="form-input" value="FansFollow.me"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Email Admin</div></div>
+              <div class="form-control-col"><input type="email" class="form-input" value="contact@fansfollow.me"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Link to Terms and Conditions</div></div>
+              <div class="form-control-col"><input type="url" class="form-input" value="https://fansfollow.me/terms"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Link to Privacy Policy</div></div>
+              <div class="form-control-col"><input type="url" class="form-input" value="https://fansfollow.me/privacy"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Link to Cookies Policy</div></div>
+              <div class="form-control-col"><input type="url" class="form-input" value="https://fansfollow.me/cookies"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Date Format</div></div>
+              <div class="form-control-col"><input type="text" class="form-input" value="Sep 01, 2026"></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Genders</div></div>
+              <div class="form-control-col">
+                <div class="chip-row">
+                  <span class="chip">Male <span class="chip-x">&times;</span></span>
+                  <span class="chip">Female <span class="chip-x">&times;</span></span>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Default language</div></div>
+              <div class="form-control-col">
+                <select class="form-select"><option selected>English</option><option>Spanish</option><option>French</option><option>German</option></select>
+                <div class="helper-text">This is the default language used for the site interface.</div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Show Errors</div></div>
+              <div class="form-control-col">
+                <div class="radio-group">
+                  <label class="radio-row"><input type="radio" name="showErrors"><span class="radio-label">On</span></label>
+                  <div class="radio-note"><i class="bi bi-exclamation-triangle"></i> Recommended only in local or test mode</div>
+                  <label class="radio-row"><input type="radio" name="showErrors" checked><span class="radio-label">Off</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Default theme</div></div>
+              <div class="form-control-col">
+                <div class="radio-group">
+                  <label class="radio-row"><input type="radio" name="theme"><span class="radio-label">Light mode</span></label>
+                  <label class="radio-row"><input type="radio" name="theme"><span class="radio-label">Dark mode</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Who can see content?</div></div>
+              <div class="form-control-col">
+                <div class="radio-group">
+                  <label class="radio-row"><input type="radio" name="seeContent" checked><span class="radio-label">All</span></label>
+                  <label class="radio-row"><input type="radio" name="seeContent"><span class="radio-label">Only registered users</span></label>
+                </div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Email Verification</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Users must verify their accounts</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Captcha</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Captcha on Page Contact us</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable tips</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">New Registrations</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Show counters on the homepage</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable Registration/Login via Email</div></div>
+              <div class="form-control-col">
+                <label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label>
+                <div class="toggle-helper"><i class="bi bi-info-circle"></i> <a href="#">Login (Admin)</a></div>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Show widget Creators Featured on the homepage</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Show earnings simulator on the homepage</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Receive verification requests</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Hide Admin profile</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Watermark on images</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Show alert that the site has adult content</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Users can edit/delete post?</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable cookie policy banner</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Referral system</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable section Contact us</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable new post email notification</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable creators search</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Browse creators by gender and age</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Allow QR code generate</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Auto-follow Admin (Only if the profile is free)</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Allow upload zip files (Post and Messages)</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Request ZIP code to verify creator account</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Allow scheduled posts</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Allow creators to deactivate their profile (Free Subscription)</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Allow upload EPUB files (Post and Messages)</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Allow sending Gifts</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable free post option</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable Explore section</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable Creators section</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Users can delete messages and conversations</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Delete inactive users via cron job</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Delete old messages older than 6 months via Cron Job</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Allow Reels</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Disable Audio Uploads</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Pay-Per-View only for free accounts</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Allow Vault</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox" checked><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Send welcome email to new users</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+            <div class="form-row">
+              <div class="form-label-col"><div class="form-label">Allow delete account</div></div>
+              <div class="form-control-col"><label class="toggle-switch"><input type="checkbox"><span class="toggle-slider"></span></label></div>
+            </div>
+
+            <button class="save-btn" onclick="alert('This is a design preview — saving is not functional here.');">Save</button>
+          </div>
+        </div>
+      </div>
+
+      <footer class="admin-footer">&copy; FansFollow.me v4.8 - 2026</footer>
+    </div>
+  </div>
+
+  <script>
+    function toggleSub(el) {
+      el.classList.toggle('expanded');
+      var sub = el.nextElementSibling;
+      if (sub && sub.classList.contains('nav-sub')) sub.classList.toggle('open');
+    }
+    function openSidebar() { document.getElementById('sidebar').classList.add('open'); document.getElementById('sidebarOverlay').classList.add('open'); }
+    function closeSidebar() { document.getElementById('sidebar').classList.remove('open'); document.getElementById('sidebarOverlay').classList.remove('open'); }
+    document.querySelectorAll('.chip-x').forEach(function(x) { x.addEventListener('click', function() { this.closest('.chip').remove(); }); });
+  </script>
+</body>
+</html>
