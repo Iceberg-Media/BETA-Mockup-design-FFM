@@ -1,0 +1,28 @@
+User-agent: *
+Allow: /
+
+Disallow: /admin-*.html
+Disallow: /add-physical-product.html
+Disallow: /create-reel.html
+Disallow: /create-story-media.html
+Disallow: /create-story-text.html
+Disallow: /dashboard.html
+Disallow: /creator-dashboard.html
+Disallow: /bookmarks.html
+Disallow: /my-likes.html
+Disallow: /my-page.html
+Disallow: /messages.html
+Disallow: /notifications.html
+Disallow: /settings.html
+Disallow: /settings-password.html
+Disallow: /settings-subscription.html
+Disallow: /wallet.html
+Disallow: /payout-method.html
+Disallow: /withdrawals.html
+Disallow: /sales.html
+Disallow: /referrals.html
+Disallow: /purchased.html
+Disallow: /subscriptions.html
+Disallow: /password-reset.html
+
+Sitemap: https://fansfollowme.com/sitemap.xml
