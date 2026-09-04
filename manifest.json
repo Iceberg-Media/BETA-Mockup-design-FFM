@@ -1,0 +1,9 @@
+{
+  "name": "FansFollow.me",
+  "short_name": "FansFollow",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0d1119",
+  "theme_color": "#f97316",
+  "icons": []
+}
