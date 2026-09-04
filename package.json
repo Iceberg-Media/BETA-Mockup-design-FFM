@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "serve -l 3000",
-    "build": "mkdir -p dist/assets/css && cp *.html dist/ && cp -r assets/css/*.css dist/assets/css/ && cp sitemap.xml robots.txt dist/"
+    "build": "mkdir -p dist/assets/css && cp *.html dist/ && cp -r assets/css/*.css dist/assets/css/ && cp sitemap.xml robots.txt manifest.json dist/"
   },
   "devDependencies": {
     "serve": "^14.2.4"
