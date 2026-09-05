@@ -31,8 +31,8 @@
     --ffm-accent: #60a5fa;
   }
 
-  html, :root { scroll-behavior: auto !important; overscroll-behavior: auto; overflow-x: hidden; }
-  body { overflow-x: hidden; font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 400; color: var(--ffm-text); background-color: #020617; background-image: none; }
+  html, :root { scroll-behavior: auto !important; overscroll-behavior: auto; overflow-x: clip; }
+  body { overflow-x: clip; font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-weight: 400; color: var(--ffm-text); background-color: #020617; background-image: none; }
   .fw-regular { font-weight: 400; } .fw-medium { font-weight: 500; } .fw-semibold { font-weight: 600; } .fw-bold { font-weight: 700; } .fw-black { font-weight: 900; }
   h1, h2, h3, h4, h5, h6 { font-family: 'Inter', sans-serif; color: var(--ffm-text); }
   h1 { font-weight: 900; } h2 { font-weight: 800; } h3, h4 { font-weight: 700; } h5, h6 { font-weight: 600; }
@@ -274,7 +274,7 @@
     .public-shell-nav-panel a i, .public-shell-nav-panel a svg.lucide { width: 1rem; height: 1rem; text-align: center; color: #fb923c; flex: 0 0 auto; }
     .public-shell-nav-panel a:hover { background: rgba(255,255,255,.08); color: #fff; }
     .public-shell-actions { display: flex; gap: .6rem; align-items: center; }
-    .public-shell-button { border-radius: 12px; font-weight: 700; min-height: 42px; padding: 0.65rem 1.1rem; letter-spacing: -0.01em; border-width: 1px; font-size: .9rem; }
+    .public-shell-button { border-radius: 12px; font-weight: 700; min-height: 44px; padding: 0.65rem 1.1rem; letter-spacing: -0.01em; border-width: 1px; font-size: .9rem; }
     .public-shell-button.btn-primary { background: var(--cta-gradient); background-image: var(--cta-gradient); color: #fff; border-color: transparent; box-shadow: 0 10px 20px rgba(249, 115, 22, .3); }
     .public-shell-button.btn-primary:hover, .public-shell-button.btn-primary:focus { background: linear-gradient(135deg, #f97316 0%, #a855f7 100%); background-image: linear-gradient(135deg, #f97316 0%, #a855f7 100%); color: #fff; }
     .public-shell-button.btn-outline-primary { color: #e5e7eb; border: none; background: rgba(30,41,59,.9); }
@@ -296,14 +296,14 @@
     .public-shell-footer .footer-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 1.5rem; align-items: start; }
     .public-shell-footer h3 { margin: 0 0 .75rem; font-size: .875rem; font-weight: 700; color: #fff; position: relative; padding-bottom: .75rem; }
     .public-shell-footer h3::after { content: ''; position: absolute; left: 0; bottom: 0; width: 32px; height: 2px; border-radius: 999px; background: var(--cta-gradient); }
-    .public-shell-footer .footer-links a { display: block; padding: .15rem 0; color: #9ca3af; font-size: .75rem; line-height: 1.4; }
+    .public-shell-footer .footer-links a { display: block; padding: .35rem 0; color: #9ca3af; font-size: .75rem; line-height: 1.4; }
     .public-shell-footer .footer-links a:hover { color: #fff; }
     .public-shell-footer .footer-bottom { display: flex; flex-direction: column; align-items: center; gap: .75rem; font-size: .75rem; line-height: 1.4; color: #9ca3af; }
     .public-shell-footer .footer-bottom > * { min-width: 0; }
     .public-shell-footer .footer-bottom .footer-legal, .public-shell-footer .footer-bottom .footer-policies, .public-shell-footer .footer-bottom .footer-follow { display: inline-flex; align-items: center; flex-wrap: wrap; gap: .5rem; margin: 0; padding: 0; border: 0; font-size: inherit; line-height: inherit; justify-content: flex-start; }
-    .public-shell-footer .footer-bottom .footer-policies { white-space: nowrap; flex-wrap: nowrap; }
-    .public-shell-footer .footer-bottom .footer-policies a { white-space: nowrap; }
-    .public-shell-footer .footer-bottom .footer-policies span { color: #64748b; white-space: nowrap; }
+    .public-shell-footer .footer-bottom .footer-policies { flex-wrap: wrap; }
+    .public-shell-footer .footer-bottom .footer-policies a { }
+    .public-shell-footer .footer-bottom .footer-policies span { color: #64748b; }
     .public-shell-footer .footer-bottom .footer-legal { flex-wrap: wrap; justify-content: center; gap: .5rem .75rem; }
     .public-shell-footer .footer-bottom .footer-legal .btc-mark { color: #f97316; font-weight: 800; }
     .public-shell-footer .footer-bottom .footer-legal strong { color: #fff; }
@@ -312,7 +312,7 @@
     .public-shell-footer .footer-follow-social { display: inline-flex; align-items: center; gap: .5rem; }
     .public-shell-footer .footer-follow-text { color: #9ca3af; font-size: .75rem; }
     .public-shell-footer .footer-social { display: inline-flex; justify-content: center; align-items: center; gap: .5rem; }
-    .public-shell-footer .footer-social a { width: 28px; height: 28px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: #1f2937; color: #9ca3af; border: 1px solid rgba(255,255,255,.08); }
+    .public-shell-footer .footer-social a { width: 44px; height: 44px; border-radius: 999px; display: inline-flex; align-items: center; justify-content: center; background: #1f2937; color: #9ca3af; border: 1px solid rgba(255,255,255,.08); }
     .public-shell-footer .footer-social a:hover { background: rgba(249,115,22,.16); border-color: rgba(249,115,22,.24); color: #fff; }
 
     @media (max-width: 991.98px) {

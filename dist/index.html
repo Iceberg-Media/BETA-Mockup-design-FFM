@@ -34,11 +34,11 @@
   html, :root {
     scroll-behavior: auto !important;
     overscroll-behavior: auto;
-    overflow-x: hidden;
+    overflow-x: clip;
   }
 
   body {
-    overflow-x: hidden;
+    overflow-x: clip;
     font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     font-weight: 400;
     color: var(--ffm-text);
@@ -1260,7 +1260,7 @@
     .public-shell-button {
       border-radius: 12px;
       font-weight: 700;
-      min-height: 42px;
+      min-height: 44px;
       padding: 0.65rem 1.1rem;
       letter-spacing: -0.01em;
       border-width: 1px;
@@ -1375,7 +1375,7 @@
       border-radius: 999px;
       background: var(--cta-gradient);
     }
-    .public-shell-footer .footer-links a { display: block; padding: .15rem 0; color: #9ca3af; font-size: .75rem; line-height: 1.4; }
+    .public-shell-footer .footer-links a { display: block; padding: .35rem 0; color: #9ca3af; font-size: .75rem; line-height: 1.4; }
     .public-shell-footer .footer-links a:hover { color: #fff; }
     .public-shell-footer .footer-bottom {
       display: flex;
@@ -1404,15 +1404,12 @@
       justify-content: flex-start;
     }
     .public-shell-footer .footer-bottom .footer-policies {
-      white-space: nowrap;
-      flex-wrap: nowrap;
+      flex-wrap: wrap;
     }
     .public-shell-footer .footer-bottom .footer-policies a {
-      white-space: nowrap;
     }
     .public-shell-footer .footer-bottom .footer-policies span {
       color: #64748b;
-      white-space: nowrap;
     }
     .public-shell-footer .footer-bottom .footer-legal {
       flex-wrap: wrap;
@@ -1449,8 +1446,8 @@
       gap: .5rem;
     }
     .public-shell-footer .footer-social a {
-      width: 28px;
-      height: 28px;
+      width: 44px;
+      height: 44px;
       border-radius: 999px;
       display: inline-flex;
       align-items: center;
@@ -1584,7 +1581,9 @@
 
     .mobile-menu-panel a,
     .mobile-menu-panel button {
-      display: block;
+      display: flex;
+      align-items: center;
+      min-height: 44px;
       padding: .75rem 0;
       color: #e5e7eb;
       text-decoration: none;
